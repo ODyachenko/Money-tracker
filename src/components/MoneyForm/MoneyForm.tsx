@@ -10,23 +10,23 @@ type MoneyType = {
 };
 
 export default function MoneyForm({
-  expense,
-  setExpense,
+  data,
+  setData,
   title,
 }: {
-  expense: MoneyType;
-  setExpense: any;
+  data: MoneyType;
+  setData: any;
   title: string;
 }) {
   const navigate = useNavigate();
 
   function onChangeHandler(event: any) {
-    setExpense({ ...expense, [event.target.name]: event.target.value });
+    setData({ ...data, [event.target.name]: event.target.value });
   }
 
   function onClickHandler(event: React.MouseEvent) {
     event.preventDefault();
-    console.log(expense);
+    console.log(data);
   }
 
   return (
@@ -55,7 +55,7 @@ export default function MoneyForm({
         <input
           type="number"
           name="amount"
-          value={expense.amount}
+          value={data.amount}
           onChange={onChangeHandler}
         />
       </label>
@@ -63,7 +63,7 @@ export default function MoneyForm({
         <select
           className="money__field money--category"
           name="category"
-          value={expense.category}
+          value={data.category}
           onChange={onChangeHandler}
         >
           <option>Category</option>
@@ -74,7 +74,7 @@ export default function MoneyForm({
         <input
           className="money__field money--description"
           name="description"
-          value={expense.description}
+          value={data.description}
           onChange={onChangeHandler}
           type="text"
           placeholder="Description"
@@ -84,7 +84,7 @@ export default function MoneyForm({
           className="money__field money--date"
           type="date"
           name="date"
-          value={expense.date}
+          value={data.date}
           onChange={onChangeHandler}
           placeholder="Date"
           required
@@ -93,7 +93,7 @@ export default function MoneyForm({
           className="money__field money--time"
           type="time"
           name="time"
-          value={expense.time}
+          value={data.time}
           onChange={onChangeHandler}
           placeholder="Time"
           required

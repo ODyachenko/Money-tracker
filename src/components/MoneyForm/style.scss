@@ -15,7 +15,8 @@
   &__subtitle {
     font-size: 18px;
     font-weight: 600;
-    color: #fcb7bc;
+    color: #fcfcfc;
+    opacity: 0.6;
 
     margin-bottom: 15px;
   }
@@ -34,6 +35,29 @@
 
     padding: 25px 15px;
     margin: 0 -15px;
+  }
+  &__inner {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    & .money__field {
+      width: calc(50% - 7px);
+    }
+  }
+  &__ico {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #f1f1fa;
+    border-radius: 50%;
+    padding: 8px;
+
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
   &__field {
     display: block;

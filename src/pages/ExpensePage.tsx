@@ -13,7 +13,7 @@ export default function ExpensePage() {
   return (
     <section className="expense">
       <div className="container">
-        <MoneyForm title="Expense" expense={expense} setExpense={setExpense} />
+        <MoneyForm title="Expense" data={expense} setData={setExpense} />
       </div>
     </section>
   );

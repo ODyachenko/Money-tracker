@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ExpensePage from './pages/ExpensePage';
 import Homepage from './pages/Homepage';
 import IncomePage from './pages/IncomePage';
-import TransferPage from './pages/TransferPage';
+import TransferPage from './pages/TransferPage/TransferPage';
 
 function App() {
   return (

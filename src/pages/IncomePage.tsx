@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 
 export default function IncomePage() {
-  const [expense, setExpense] = useState({
+  const [data, setData] = useState({
     amount: 0,
     category: 'Category',
     description: '',
@@ -13,7 +13,7 @@ export default function IncomePage() {
   return (
     <section className="income">
       <div className="container">
-        <MoneyForm title="Income" expense={expense} setExpense={setExpense} />
+        <MoneyForm title="Income" data={data} setData={setData} />
       </div>
     </section>
   );

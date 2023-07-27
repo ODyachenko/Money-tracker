@@ -3,12 +3,15 @@ import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
 export default function Header() {
+  const date = new Date();
+  const month = date.toLocaleString('en', { month: 'long' });
+
   return (
     <header className="header block">
       <div className="container">
         <div className="header__inner">
           <img className="header__avatar" src={avatar} alt="user avatar" />
-          <button className="header__month">October</button>
+          <button className="header__month">{month}</button>
           <img
             className="header__notification"
             src={notification}
