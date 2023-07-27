@@ -1,4 +1,5 @@
 import Header from './components/Header/Header';
+import RecentTransaction from './components/RecentTransaction/RecentTransaction';
 import Spend from './components/Spend/Spend';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <main className="App">
       <Header />
       <Spend />
+      <RecentTransaction />
     </main>
   );
 }
