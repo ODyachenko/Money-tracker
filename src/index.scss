@@ -1,0 +1,23 @@
+@import './assets/scss/fonts.scss';
+@import './assets/scss/normalize.scss';
+@import './assets//scss/variables.scss';
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #292b2d;
+}
+
+.block {
+  padding: 25px 0;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+}
