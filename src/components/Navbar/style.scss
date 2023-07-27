@@ -1,0 +1,55 @@
+@import '../../assets/scss/variables.scss';
+
+.nav {
+  position: relative;
+  background: #fcfcfc;
+
+  &__list {
+    display: flex;
+    align-items: flex-end;
+    // justify-content: space-between;
+
+    &-item {
+      &.active {
+        .nav__list-ico svg path {
+          fill: $primary-violet;
+        }
+        .nav__list-caption {
+          color: $primary-violet;
+        }
+      }
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
+      &:nth-child(2) {
+        margin-right: auto;
+      }
+    }
+    &-ico {
+      text-align: center;
+      margin: 0 auto 5px;
+    }
+    &-caption {
+      display: block;
+      font-size: 10px;
+      color: #c6c6c6;
+    }
+  }
+  &__btn {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    background: $primary-violet;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}

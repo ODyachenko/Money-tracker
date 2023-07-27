@@ -1,13 +1,11 @@
-import Header from './components/Header/Header';
-import RecentTransaction from './components/RecentTransaction/RecentTransaction';
-import Spend from './components/Spend/Spend';
+import Navbar from './components/Navbar/Navbar';
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
     <main className="App">
-      <Header />
-      <Spend />
-      <RecentTransaction />
+      <Homepage />
+      <Navbar />
     </main>
   );
 }
