@@ -197,8 +197,14 @@ img {
 a {
   color: inherit;
 }
-button {
+button,
+input {
   all: unset;
+  display: block;
+  width: 100%;
   font-family: inherit;
   box-sizing: border-box;
+}
+input::placeholder {
+  color: #91919f;
 }

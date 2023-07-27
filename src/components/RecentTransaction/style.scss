@@ -1,6 +1,9 @@
 @import '../../assets//scss/variables.scss';
 
 .recent {
+  position: relative;
+  z-index: 10;
+
   &__title {
     margin-bottom: 30px;
   }
