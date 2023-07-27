@@ -1,5 +1,5 @@
 import graph from '../../assets/img/graph.png';
-import IntervalsTabs from '../IntervalsTabs/IntervalsTabs';
+import IntervalsTabs from './IntervalsTabs';
 import './style.scss';
 
 export default function Spend() {

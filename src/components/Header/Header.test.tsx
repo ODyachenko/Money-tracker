@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Header from './Header';
 
-describe('Renders Header elements', () => {
+describe('Header component', () => {
   test('Renders subtitle', () => {
     render(<Header />);
     const subtitle = screen.getByText(/Account Balance/i);
