@@ -1,0 +1,97 @@
+@import '../../assets//scss/variables.scss';
+
+.header {
+  background: linear-gradient(
+    182deg,
+    #fff6e5 0%,
+    rgba(248, 237, 216, 0) 98.91%
+  );
+  border-radius: 0px 0px 32px 32px;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+  }
+  &__month {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    max-width: 110px;
+    text-align: center;
+    border: 1px solid #f1f1fa;
+    border-radius: 40px;
+
+    padding: 10px 15px 10px 25px;
+
+    &::before {
+      content: '';
+      width: 14px;
+      height: 7px;
+      background: url('../../assets/img/arrow.svg') no-repeat center/contain;
+
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
+.account {
+  &__subtitle {
+    color: #91919f;
+    text-align: center;
+
+    margin-bottom: 10px;
+  }
+  &__balance {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 30px;
+  }
+  &__money {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-income,
+    &-expense {
+      width: calc(50% - 7px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      border-radius: 20px;
+
+      padding: 10px;
+    }
+    &-income {
+      background: $primary-green;
+    }
+    &-expense {
+      background: $primary-red;
+    }
+    &-ico {
+      max-width: 43px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 16px;
+
+      padding: 8px 10px;
+      margin-right: 10px;
+    }
+    &-subtitle {
+      margin-bottom: 5px;
+    }
+    &-amount {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
