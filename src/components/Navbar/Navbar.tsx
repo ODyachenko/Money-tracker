@@ -95,22 +95,20 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState(0);
 
   return (
-    <nav className="nav block">
-      <div className="container">
-        <ul className="nav__list">
-          {navLinks.map((link, index) => {
-            return (
-              <NavLink
-                key={link.id}
-                {...link}
-                activeLink={activeLink}
-                setActiveLink={setActiveLink}
-              />
-            );
-          })}
-        </ul>
-        <CircleMenu />
-      </div>
+    <nav className="nav">
+      <ul className="nav__list">
+        {navLinks.map((link, index) => {
+          return (
+            <NavLink
+              key={link.id}
+              {...link}
+              activeLink={activeLink}
+              setActiveLink={setActiveLink}
+            />
+          );
+        })}
+      </ul>
+      <CircleMenu />
     </nav>
   );
 }

@@ -41,6 +41,14 @@ body {
 .income {
   padding-top: 25px;
 }
+.expense .container,
+.income .container,
+.transfer .container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .expense {
   background: $primary-red;
 }
