@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import './style.scss';
 
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const initialState = {
+  amount: 0,
+  from: '',
+  to: '',
+  description: '',
+  date: '',
+  time: '',
+  type: 'transfer',
+};
+
 export default function TransferPage() {
-  const [data, setData] = useState({
-    amount: 0,
-    from: '',
-    to: '',
-    description: '',
-    date: '',
-    time: '',
-  });
+  const [data, setData] = useState(initialState);
+  const [isSend, setIsSend] = useState(false);
+
+  useEffect(() => {
+    if (isSend) {
+      try {
+        axios.post(URL, data);
+        setData(initialState);
+      } catch (error: any) {
+        console.error('Error', error.message);
+      } finally {
+        setIsSend(false);
+      }
+    }
+  }, [data, isSend]);
 
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: event.target.value });
@@ -18,7 +38,7 @@ export default function TransferPage() {
 
   function onClickHandler(event: React.MouseEvent) {
     event.preventDefault();
-    console.log(data);
+    setIsSend(true);
   }
 
   return (
@@ -108,7 +128,7 @@ export default function TransferPage() {
               className="money__btn primary-btn"
               type="submit"
             >
-              Continue
+              {isSend ? <BeatLoader color="#fff" /> : 'Continue'}
             </button>
           </div>
         </div>

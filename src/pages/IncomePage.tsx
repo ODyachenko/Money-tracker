@@ -1,17 +1,9 @@
-import { useState } from 'react';
 import ArrowBack from '../components/ArrowBack/ArrowBack';
 
 import MoneyForm from '../components/MoneyForm/MoneyForm';
+import SucessPopup from '../components/SuccessPopup/SucessPopup';
 
 export default function IncomePage() {
-  const [data, setData] = useState({
-    amount: 0,
-    category: 'Category',
-    description: '',
-    date: '',
-    time: '',
-  });
-
   return (
     <section className="income">
       <div className="container">
@@ -19,8 +11,9 @@ export default function IncomePage() {
           <ArrowBack />
           Income
         </h2>
-        <MoneyForm data={data} setData={setData} />
+        <MoneyForm transaction="income" />
       </div>
+      <SucessPopup />
     </section>
   );
 }
