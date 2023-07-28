@@ -1,0 +1,65 @@
+@import '../../assets/scss/variables.scss';
+
+.filters {
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  transition: all 0.5s ease;
+  padding: 25px 15px;
+
+  position: fixed;
+  bottom: -55%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  &.show {
+    bottom: 0;
+
+    & + .overlay {
+      background: rgba(0, 0, 0, 0.27);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 500;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+  }
+  &-btn {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    border: 1px solid #e3e5e5;
+    border-radius: 24px;
+    padding: 10px 15px;
+  }
+  &__group {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    &-item {
+      transition: all 0.3s ease;
+
+      &.active {
+        color: $primary-violet;
+        background: $violet-bg;
+      }
+    }
+    &-title {
+      margin-bottom: 15px;
+    }
+  }
+}
