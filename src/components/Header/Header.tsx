@@ -11,7 +11,7 @@ export default function Header() {
       <div className="container">
         <div className="header__inner">
           <img className="header__avatar" src={avatar} alt="user avatar" />
-          <button className="header__month">{month}</button>
+          <button className="header__month secondary-btn">{month}</button>
           <img
             className="header__notification"
             src={notification}

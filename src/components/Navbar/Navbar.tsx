@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NavLink from './NavLink';
+import NavItem from './NavItem';
 
 import './style.scss';
 import CircleMenu from './CircleMenu';
@@ -22,6 +22,7 @@ const navLinks = [
       </svg>
     ),
     caption: 'Home',
+    path: '/',
   },
   {
     id: 1,
@@ -44,6 +45,7 @@ const navLinks = [
       </svg>
     ),
     caption: 'Transaction',
+    path: '/transaction',
   },
   {
     id: 2,
@@ -66,6 +68,7 @@ const navLinks = [
       </svg>
     ),
     caption: 'Budget',
+    path: '/budget',
   },
   {
     id: 3,
@@ -88,6 +91,7 @@ const navLinks = [
       </svg>
     ),
     caption: 'Profile',
+    path: '/profile',
   },
 ];
 
@@ -99,7 +103,7 @@ export default function Navbar() {
       <ul className="nav__list">
         {navLinks.map((link, index) => {
           return (
-            <NavLink
+            <NavItem
               key={link.id}
               {...link}
               activeLink={activeLink}

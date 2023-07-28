@@ -1,0 +1,50 @@
+.transaction {
+  padding: 25px 0 90px;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+  }
+  &__filters {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f1f1fa;
+    border-radius: 8px;
+
+    &-item {
+      width: 15px;
+
+      &,
+      &::before,
+      &::after {
+        height: 2px;
+        background: #212325;
+        border-radius: 10px;
+      }
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+
+      &::before {
+        width: 25px;
+        top: 10px;
+      }
+      &::after {
+        width: 10px;
+        bottom: 10px;
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Navbar from './components/Navbar/Navbar';
-import ExpensePage from './pages/ExpensePage';
 import Homepage from './pages/Homepage';
+import TransactionPage from './pages/TransactionPage/TransactionPage';
 import IncomePage from './pages/IncomePage';
+import ExpensePage from './pages/ExpensePage';
 import TransferPage from './pages/TransferPage/TransferPage';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
           <Route path="/income" element={<IncomePage />} />
           <Route path="/expense" element={<ExpensePage />} />
           <Route path="/transfer" element={<TransferPage />} />
+          <Route path="/transaction" element={<TransactionPage />} />
         </Routes>
       </BrowserRouter>
     </main>

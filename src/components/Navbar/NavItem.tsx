@@ -1,17 +1,20 @@
 import { ReactNode } from 'react';
+import { NavLink } from 'react-router-dom';
 
 type LinkType = {
   id: number;
   icon: ReactNode;
   caption: string;
+  path: string;
   activeLink: any;
   setActiveLink: any;
 };
 
-export default function NavLink({
+export default function NavItem({
   id,
   icon,
   caption,
+  path,
   activeLink,
   setActiveLink,
 }: LinkType) {
@@ -20,8 +23,10 @@ export default function NavLink({
       className={`nav__list-item ${activeLink === id ? 'active' : ''}`}
       onClick={() => setActiveLink(id)}
     >
-      <figure className="nav__list-ico">{icon}</figure>
-      <span className="nav__list-caption">{caption}</span>
+      <NavLink to={path}>
+        <figure className="nav__list-ico">{icon}</figure>
+        <span className="nav__list-caption">{caption}</span>
+      </NavLink>
     </li>
   );
 }

@@ -11,9 +11,8 @@ describe('Recent transaction component', () => {
 
   test('Renders transaction list', () => {
     const { container } = render(<RecentTransaction />);
-    const transactionList = container.getElementsByClassName(
-      'recent__transaction'
-    )[0];
+    const transactionList =
+      container.getElementsByClassName('transaction__group')[0];
 
     expect(transactionList).toBeInTheDocument();
   });

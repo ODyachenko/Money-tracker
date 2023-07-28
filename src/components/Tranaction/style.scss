@@ -1,0 +1,49 @@
+@import '../../assets//scss/variables.scss';
+
+.transaction {
+  &__group {
+    &-title {
+      margin-bottom: 15px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  &__item {
+    display: flex;
+    background: #fcfcfc;
+    border-radius: 24px;
+    padding: 15px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  &__ico {
+    width: 50px;
+    margin-right: 10px;
+  }
+  &__col:first-of-type {
+    margin-right: auto;
+  }
+  &__caption {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  &__description {
+    font-size: 13px;
+    color: #91919f;
+  }
+  &__amount {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: $primary-red;
+    margin-bottom: 12px;
+  }
+  &__time {
+    display: block;
+    color: #91919f;
+    text-align: right;
+  }
+}

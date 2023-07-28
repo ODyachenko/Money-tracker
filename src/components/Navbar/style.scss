@@ -1,7 +1,11 @@
 @import '../../assets/scss/variables.scss';
 
 .nav {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 
   &__list {
     position: relative;
@@ -49,7 +53,7 @@
     transition: all 0.5s ease;
 
     position: absolute;
-    bottom: 35px;
+    bottom: 45px;
     left: 0;
     right: 0;
     z-index: 50;
