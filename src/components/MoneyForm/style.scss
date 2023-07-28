@@ -8,34 +8,6 @@
 
     margin-bottom: 75px;
   }
-  &__back {
-    position: absolute;
-    left: 0;
-  }
-  &__subtitle {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fcfcfc;
-    opacity: 0.6;
-
-    margin-bottom: 15px;
-  }
-  &__count {
-    display: flex;
-    align-items: center;
-    font-size: 64px;
-    font-weight: 600;
-    color: #fff;
-
-    margin-bottom: 15px;
-  }
-  &__settings {
-    background: #fff;
-    border-radius: 32px 32px 0 0;
-
-    padding: 25px 15px;
-    margin: 0 -15px;
-  }
   &__inner {
     position: relative;
     display: flex;
@@ -58,17 +30,5 @@
     left: 0;
     right: 0;
     margin: auto;
-  }
-  &__field {
-    display: block;
-    width: 100%;
-    font-family: inherit;
-    color: #91919f;
-    background: #fff;
-    border: 1px solid #f1f1fa;
-    border-radius: 16px;
-
-    padding: 14px 16px;
-    margin-bottom: 15px;
   }
 }

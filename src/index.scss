@@ -80,3 +80,35 @@ body {
     margin: auto;
   }
 }
+.money-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fcfcfc;
+  opacity: 0.6;
+  margin-bottom: 15px;
+}
+.money-count {
+  display: flex;
+  align-items: center;
+  font-size: 64px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.settings {
+  background: #fff;
+  border-radius: 32px 32px 0 0;
+  padding: 25px 15px;
+  margin: 0 -15px;
+}
+.field {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  color: #91919f;
+  background: #fff;
+  border: 1px solid #f1f1fa;
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 15px;
+}

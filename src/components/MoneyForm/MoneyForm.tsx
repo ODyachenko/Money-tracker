@@ -26,8 +26,8 @@ export default function MoneyForm({
 
   return (
     <form action="/" className="money__form">
-      <h3 className="money__subtitle">How much?</h3>
-      <label className="money__count">
+      <h3 className="money__subtitle money-subtitle">How much?</h3>
+      <label className="money__count money-count">
         $
         <input
           type="number"
@@ -36,9 +36,9 @@ export default function MoneyForm({
           onChange={onChangeHandler}
         />
       </label>
-      <div className="money__settings">
+      <div className="money__settings settings">
         <select
-          className="money__field money--category"
+          className="money__field money--category field"
           name="category"
           value={data.category}
           onChange={onChangeHandler}
@@ -49,7 +49,7 @@ export default function MoneyForm({
           <option value="Food">Food</option>
         </select>
         <input
-          className="money__field money--description"
+          className="money__field money--description field"
           name="description"
           value={data.description}
           onChange={onChangeHandler}
@@ -58,7 +58,7 @@ export default function MoneyForm({
           required
         />
         <input
-          className="money__field money--date"
+          className="money__field money--date field"
           type="date"
           name="date"
           value={data.date}
@@ -66,7 +66,7 @@ export default function MoneyForm({
           required
         />
         <input
-          className="money__field money--time"
+          className="money__field money--time field"
           type="time"
           name="time"
           value={data.time}
