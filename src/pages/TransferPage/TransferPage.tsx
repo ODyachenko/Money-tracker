@@ -12,7 +12,7 @@ const initialState = {
   description: '',
   date: '',
   time: '',
-  type: 'transfer',
+  type: 'expense',
 };
 
 export default function TransferPage() {
@@ -22,12 +22,12 @@ export default function TransferPage() {
   useEffect(() => {
     if (isSend) {
       try {
-        axios.post(URL, data);
-        setData(initialState);
+        axios.post(URL, data).then(() => {
+          setData(initialState);
+          setIsSend(false);
+        });
       } catch (error: any) {
         console.error('Error', error.message);
-      } finally {
-        setIsSend(false);
       }
     }
   }, [data, isSend]);

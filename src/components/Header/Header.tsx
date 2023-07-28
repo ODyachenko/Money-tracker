@@ -1,10 +1,37 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
+const incomeURL =
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?type=income';
+const expenseURL =
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?type=expense';
+
 export default function Header() {
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
+  const [expense, setExpense] = useState([]);
+  const [income, setIncome] = useState([]);
+
+  useEffect(() => {
+    try {
+      axios(incomeURL).then((res) => {
+        setIncome(res.data);
+      });
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      axios(expenseURL).then((res) => setExpense(res.data));
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  }, []);
 
   return (
     <header className="header block">
@@ -54,7 +81,12 @@ export default function Header() {
               </span>
               <div className="account__money-content">
                 <h3 className="account__money-subtitle">Income</h3>
-                <h2 className="account__money-amount">$5000</h2>
+                <h2 className="account__money-amount">
+                  $
+                  {income.reduce((result: number, value: any) => {
+                    return Number(result) + Number(value.amount);
+                  }, 0)}
+                </h2>
               </div>
             </div>
             <div className="account__money-expense">
@@ -89,7 +121,12 @@ export default function Header() {
               </span>
               <div className="account__money-content">
                 <h3 className="account__money-subtitle">Expenses</h3>
-                <h2 className="account__money-amount">$1200</h2>
+                <h2 className="account__money-amount">
+                  $
+                  {expense.reduce((result: number, value: any) => {
+                    return Number(result) + Number(value.amount);
+                  }, 0)}
+                </h2>
               </div>
             </div>
           </div>

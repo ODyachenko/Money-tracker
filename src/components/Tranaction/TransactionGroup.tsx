@@ -1,34 +1,36 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import TransactionItem from './TransactionItem';
-import shoppingBag from '../../assets/img/shopping_bag.svg';
-import subscription from '../../assets/img/recurring_bill.svg';
-import food from '../../assets/img/restaurant.svg';
+
+type TransactionType = {
+  id: number;
+  amount: string;
+  category: string;
+  description: string;
+  time: string;
+};
+
+const URL =
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?sortBy=time';
 
 export default function TransactionGroup({ title }: { title: string }) {
+  const [transactionList, setTransactionList] = useState([]);
+
+  useEffect(() => {
+    try {
+      axios(URL).then((res) => setTransactionList(res.data));
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  }, []);
+
   return (
     <div className="transaction__group">
       <h2 className="transaction__group-title section-title">{title}</h2>
       <ul className="transaction__group-list">
-        <TransactionItem
-          icon={shoppingBag}
-          caption="Shopping"
-          description="Buy some grocery"
-          amount="- $120"
-          time="9:00"
-        />
-        <TransactionItem
-          icon={subscription}
-          caption="Subscription"
-          description="Netflix + Youtube"
-          amount="- $80"
-          time="12:00"
-        />
-        <TransactionItem
-          icon={food}
-          caption="Food"
-          description="Buy a ramen"
-          amount="- $132"
-          time="15:00"
-        />
+        {transactionList.map((transaction: TransactionType) => {
+          return <TransactionItem key={transaction.id} {...transaction} />;
+        })}
       </ul>
     </div>
   );

@@ -1,6 +1,7 @@
 @import '../../assets/scss/variables.scss';
 
 .nav {
+  background: #fcfcfc;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -10,10 +11,13 @@
   &__list {
     position: relative;
     z-index: 30;
+    max-width: 420px;
     display: flex;
     align-items: flex-end;
     background: #fcfcfc;
+
     padding: 25px 15px;
+    margin: 0 auto;
 
     &-item {
       &.active {

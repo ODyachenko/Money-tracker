@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import './style.scss';
@@ -14,7 +19,7 @@ type TransactionType = {
 
 const initalState: TransactionType = {
   amount: 0,
-  category: 'Choose the category',
+  category: '',
   description: '',
   date: '',
   time: '',
@@ -30,12 +35,12 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
   useEffect(() => {
     if (isSend) {
       try {
-        axios.post(URL, data);
-        setData({ ...initalState, type: transaction });
+        axios.post(URL, data).then(() => {
+          setData({ ...initalState, type: transaction });
+          setIsSend(false);
+        });
       } catch (error: any) {
         console.error('Error:', error.message);
-      } finally {
-        setIsSend(false);
       }
     }
   }, [data, isSend]);
@@ -48,6 +53,10 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
     event.preventDefault();
     setIsSend(true);
   }
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setData({ ...data, ['category']: event.target.value });
+  };
 
   return (
     <form action="/" className="money__form" onSubmit={onSubmitHandler}>
@@ -62,17 +71,21 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
         />
       </label>
       <div className="money__settings settings">
-        <select
-          className="money__field money--category field"
-          name="category"
-          value={data.category}
-          onChange={onChangeHandler}
-        >
-          <option>Choose the category</option>
-          <option value="Shopping">Shopping</option>
-          <option value="Subscription">Subscription</option>
-          <option value="Food">Food</option>
-        </select>
+        <FormControl fullWidth className="field">
+          <InputLabel>Category</InputLabel>
+          <Select
+            label="Category"
+            value={data.category}
+            onChange={handleChange}
+          >
+            <MenuItem value="Shopping">Shopping</MenuItem>
+            <MenuItem value="Subscription">Subscription</MenuItem>
+            <MenuItem value="Food">Food</MenuItem>
+            <MenuItem value="Transport">Public transport</MenuItem>
+            <MenuItem value="Gas">Gas station</MenuItem>
+            <MenuItem value="Pet">Pet store</MenuItem>
+          </Select>
+        </FormControl>
         <input
           className="money__field money--description field"
           name="description"
