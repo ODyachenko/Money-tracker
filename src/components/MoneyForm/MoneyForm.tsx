@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -8,6 +7,11 @@ import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import { TransactionType } from '../../redux/slices/transactionSlice';
 import './style.scss';
+
+type MoneyFormType = {
+  transaction: string;
+  categories: string[];
+};
 
 const initalState: TransactionType = {
   amount: 0,
@@ -20,7 +24,7 @@ const initalState: TransactionType = {
 
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
 
-export default function MoneyForm({ transaction }: { transaction: string }) {
+export default function MoneyForm({ transaction, categories }: MoneyFormType) {
   const [data, setData] = useState({ ...initalState, type: transaction });
   const [isSend, setIsSend] = useState(false);
 
@@ -37,7 +41,7 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
     }
   }, [data, isSend]);
 
-  function onChangeHandler(event: any) {
+  function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: event.target.value });
   }
 
@@ -72,23 +76,27 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
             value={data.category}
             onChange={handleChange}
           >
-            <MenuItem value="Shopping">Shopping</MenuItem>
-            <MenuItem value="Subscription">Subscription</MenuItem>
-            <MenuItem value="Food">Food</MenuItem>
-            <MenuItem value="Transport">Public transport</MenuItem>
-            <MenuItem value="Gas">Gas station</MenuItem>
-            <MenuItem value="Pet">Pet store</MenuItem>
+            {categories.map((category) => {
+              return (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
-        <input
-          className="money__field money--description field"
-          name="description"
-          value={data.description}
-          onChange={onChangeHandler}
-          type="text"
-          placeholder="Description"
-          required
-        />
+        <div className="money__group input-group">
+          <input
+            id="description"
+            className="money__field money--description field"
+            name="description"
+            value={data.description}
+            onChange={onChangeHandler}
+            type="text"
+            required
+          />
+          <label htmlFor="description">Description</label>
+        </div>
         <input
           className="money__field money--date field"
           type="date"

@@ -1,32 +1,57 @@
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setTransaction,
+  setAccountBalance,
   TransactionType,
 } from '../../redux/slices/transactionSlice';
 import axios from 'axios';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
+import { stringify } from 'querystring';
 
-const URL =
-  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?sortBy=time';
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
 
 export default function Header() {
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
-  const { transaction } = useSelector((state: any) => state.transaction);
+  const [isEdit, setIsEdit] = useState(false);
+  const { transaction, accountBalance } = useSelector(
+    (state: any) => state.transaction
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     try {
-      axios(URL).then((res) => {
-        dispatch(setTransaction(res.data));
+      axios(`${URL}?sortBy=time`).then((res) => {
+        dispatch(setTransaction(res.data[1]));
+        dispatch(setAccountBalance(res.data[0].balance));
       });
     } catch (error: any) {
       console.error(error.message);
     }
   }, []);
+
+  useEffect(() => {
+    if (!!accountBalance) {
+      try {
+        axios.put(`${URL}/userBalance`, {
+          balance: accountBalance,
+        });
+      } catch (error: any) {
+        console.error(error.message);
+      }
+    }
+  }, [isEdit]);
+
+  function onChangeBalance(event: ChangeEvent<HTMLInputElement>) {
+    dispatch(setAccountBalance(event.target.value));
+  }
+
+  function onBlurHandler() {
+    setIsEdit(false);
+  }
 
   return (
     <header className="header block">
@@ -42,7 +67,19 @@ export default function Header() {
         </div>
         <div className="header__account account">
           <h2 className="account__subtitle">Account Balance</h2>
-          <h1 className="account__balance">$9400</h1>
+          <h1 className="account__balance" onClick={() => setIsEdit(true)}>
+            {isEdit ? (
+              <input
+                type="number"
+                autoFocus
+                value={accountBalance}
+                onChange={onChangeBalance}
+                onBlur={onBlurHandler}
+              />
+            ) : (
+              `$${accountBalance}`
+            )}
+          </h1>
           <div className="account__money">
             <div className="account__money-income">
               <span className="account__money-ico">

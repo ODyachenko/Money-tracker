@@ -1,6 +1,6 @@
 @import './assets/scss/fonts.scss';
 @import './assets/scss/normalize.scss';
-@import './assets//scss/variables.scss';
+@import './assets/scss/variables.scss';
 
 body {
   font-family: 'Inter', sans-serif;
@@ -39,29 +39,28 @@ body {
 
   padding: 17px;
 }
-.expense,
-.income {
+section.expense,
+section.income {
+  height: 100vh;
   padding-top: 25px;
 }
 .expense .container,
 .income .container,
 .transfer .container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.expense {
+section.expense {
   background: $primary-red;
 }
-.income {
+section.income {
   background: $primary-green;
 }
 .secondary-btn {
   position: relative;
 
-  display: block;
-  width: 100%;
   max-width: 110px;
   text-align: center;
   border: 1px solid #f1f1fa;
@@ -109,8 +108,40 @@ body {
   font-family: inherit;
   color: #91919f;
   background: #fff;
-  border: 1px solid #f1f1fa;
-  border-radius: 16px;
-  padding: 14px 16px;
+  border: 2px solid #f1f1fa;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+
+  padding: 15px 16px;
+  margin-bottom: 15px;
+}
+.input-group {
+  position: relative;
+
+  & .field:focus {
+    border-color: #1976d2;
+  }
+  & label {
+    color: #91919f;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(15px, 16px);
+    transition: all 0.5s ease;
+  }
+  & .field:focus + label,
+  & .field:valid + label {
+    background: #fff;
+    padding-inline: 5px;
+    transform: translate(10px, -7px);
+    scale: 0.9;
+  }
+}
+.settings .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  font-family: Inter;
+  font-size: 14px;
+  border-radius: 12px;
+}
+.settings .css-q8hpuo-MuiFormControl-root {
   margin-bottom: 15px;
 }

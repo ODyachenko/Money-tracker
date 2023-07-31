@@ -40,6 +40,13 @@
     font-weight: 600;
     color: $primary-red;
     margin-bottom: 12px;
+
+    &.income {
+      color: $primary-green;
+    }
+    &.expense {
+      color: $primary-red;
+    }
   }
   &__time {
     display: block;

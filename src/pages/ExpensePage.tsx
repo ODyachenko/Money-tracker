@@ -1,6 +1,15 @@
 import ArrowBack from '../components/ArrowBack/ArrowBack';
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 
+const categories = [
+  'Shopping',
+  'Subscription',
+  'Food',
+  'Transport',
+  'Gas',
+  'Pet',
+];
+
 export default function ExpensePage() {
   return (
     <section className="expense">
@@ -9,7 +18,7 @@ export default function ExpensePage() {
           <ArrowBack />
           Expense
         </h2>
-        <MoneyForm transaction="expense" />
+        <MoneyForm transaction="expense" categories={categories} />
       </div>
     </section>
   );

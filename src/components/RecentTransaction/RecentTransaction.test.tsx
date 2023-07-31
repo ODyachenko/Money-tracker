@@ -20,8 +20,8 @@ describe('Recent transaction component', () => {
   test('Renders transaction list item', () => {
     const { container } = render(<RecentTransaction />);
     const caption = screen.getByText(/Subscription/i);
-    const description = screen.getByText(/Netflix \+ Youtube/i);
-    const amount = screen.getByText(/\- \$80/i);
+    const description = screen.getByText(/Netflix/i);
+    const amount = screen.getByText(/\- \$5/i);
 
     expect(caption && description && amount).toBeInTheDocument();
   });

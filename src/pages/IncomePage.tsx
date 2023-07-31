@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import ArrowBack from '../components/ArrowBack/ArrowBack';
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 import SucessPopup from '../components/SuccessPopup/SucessPopup';
+
+const categories = ['Salary', 'Advance'];
 
 export default function IncomePage() {
   return (
@@ -10,7 +13,7 @@ export default function IncomePage() {
           <ArrowBack />
           Income
         </h2>
-        <MoneyForm transaction="income" />
+        <MoneyForm transaction="income" categories={categories} />
       </div>
       <SucessPopup />
     </section>

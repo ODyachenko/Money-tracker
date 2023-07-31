@@ -6,6 +6,7 @@ export default function TransactionItem({
   category,
   description,
   time,
+  type,
 }: TransactionType) {
   return (
     <li className="transaction__item">
@@ -20,7 +21,13 @@ export default function TransactionItem({
         <span className="transaction__description">{description}</span>
       </div>
       <div className="transaction__col">
-        <span className="transaction__amount">${amount}</span>
+        <span
+          className={`transaction__amount ${
+            type === 'income' ? 'income' : 'expense'
+          }`}
+        >
+          ${amount}
+        </span>
         <span className="transaction__time">{time}</span>
       </div>
     </li>

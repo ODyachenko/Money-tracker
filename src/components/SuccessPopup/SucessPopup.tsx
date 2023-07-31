@@ -2,7 +2,7 @@ import './style.scss';
 
 export default function SucessPopup() {
   return (
-    <div className="popup">
+    <div className={`popup`}>
       <div className="popup__window">
         <svg
           className="popup__ico"

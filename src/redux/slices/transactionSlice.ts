@@ -12,10 +12,12 @@ export interface TransactionType {
 
 interface TransactionState {
   transaction: TransactionType[];
+  accountBalance: number;
 }
 
 const initialState: TransactionState = {
   transaction: [],
+  accountBalance: 0,
 };
 
 export const transactionSlice = createSlice({
@@ -25,10 +27,13 @@ export const transactionSlice = createSlice({
     setTransaction: (state, action) => {
       state.transaction = action.payload;
     },
+    setAccountBalance: (state, action) => {
+      state.accountBalance = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setTransaction } = transactionSlice.actions;
+export const { setTransaction, setAccountBalance } = transactionSlice.actions;
 
 export default transactionSlice.reducer;

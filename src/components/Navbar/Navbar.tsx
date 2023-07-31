@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import NavItem from './NavItem';
-
-import './style.scss';
 import CircleMenu from './CircleMenu';
+import './style.scss';
 
 const navLinks = [
   {
