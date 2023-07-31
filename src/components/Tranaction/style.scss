@@ -46,4 +46,15 @@
     color: #91919f;
     text-align: right;
   }
+  &__empty {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-title {
+      font-size: 15px;
+      color: #91919f;
+    }
+  }
 }

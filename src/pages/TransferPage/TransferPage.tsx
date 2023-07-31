@@ -4,9 +4,19 @@ import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import './style.scss';
 
+interface TransferType {
+  amount: string;
+  from: string;
+  to: string;
+  description: string;
+  date: string;
+  time: string;
+  type: string;
+}
+
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
 const initialState = {
-  amount: 0,
+  amount: '0',
   from: '',
   to: '',
   description: '',

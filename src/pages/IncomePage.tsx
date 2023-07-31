@@ -1,5 +1,4 @@
 import ArrowBack from '../components/ArrowBack/ArrowBack';
-
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 import SucessPopup from '../components/SuccessPopup/SucessPopup';
 
