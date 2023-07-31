@@ -6,16 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
+import { TransactionType } from '../../redux/slices/transactionSlice';
 import './style.scss';
-
-export interface TransactionType {
-  amount: number | string;
-  category: string;
-  description: string;
-  date: string;
-  time: string;
-  type: string;
-}
 
 const initalState: TransactionType = {
   amount: 0,

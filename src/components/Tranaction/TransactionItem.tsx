@@ -1,15 +1,5 @@
-import shoppingBag from '../../assets/img/shopping_bag.svg';
-import subscription from '../../assets/img/recurring_bill.svg';
-import food from '../../assets/img/restaurant.svg';
-
+import { TransactionType } from '../../redux/slices/transactionSlice';
 import './style.scss';
-
-type TransactionType = {
-  amount: string;
-  category: string;
-  description: string;
-  time: string;
-};
 
 export default function TransactionItem({
   amount,

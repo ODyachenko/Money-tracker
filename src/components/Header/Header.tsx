@@ -1,21 +1,27 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setTransaction,
+  TransactionType,
+} from '../../redux/slices/transactionSlice';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { TransactionType } from '../MoneyForm/MoneyForm';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const URL =
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?sortBy=time';
 
 export default function Header() {
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
-  const [transaction, setTransaction] = useState([]);
+  const { transaction } = useSelector((state: any) => state.transaction);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
       axios(URL).then((res) => {
-        setTransaction(res.data);
+        dispatch(setTransaction(res.data));
       });
     } catch (error: any) {
       console.error(error.message);

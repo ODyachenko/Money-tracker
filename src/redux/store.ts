@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import counterSlice from './sclices/counterSlice';
+import transactionSlice from './slices/transactionSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    transaction: transactionSlice,
   },
 });
 
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppDispatch = typeof store.dispatch;
+// export const useAppDispatch: () => AppDispatch = useDispatch;
+
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch: () => AppDispatch = useDispatch;
+type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
