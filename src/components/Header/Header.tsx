@@ -1,33 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { TransactionType } from '../MoneyForm/MoneyForm';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
-const incomeURL =
-  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?type=income';
-const expenseURL =
-  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?type=expense';
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
 
 export default function Header() {
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
-  const [expense, setExpense] = useState([]);
-  const [income, setIncome] = useState([]);
+  const [transaction, setTransaction] = useState([]);
 
   useEffect(() => {
     try {
-      axios(incomeURL).then((res) => {
-        setIncome(res.data);
+      axios(URL).then((res) => {
+        setTransaction(res.data);
       });
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      axios(expenseURL).then((res) => setExpense(res.data));
     } catch (error: any) {
       console.error(error.message);
     }
@@ -83,9 +72,11 @@ export default function Header() {
                 <h3 className="account__money-subtitle">Income</h3>
                 <h2 className="account__money-amount">
                   $
-                  {income.reduce((result: number, value: any) => {
-                    return Number(result) + Number(value.amount);
-                  }, 0)}
+                  {transaction
+                    .filter((value: TransactionType) => value.type === 'income')
+                    .reduce((result: number, value: TransactionType) => {
+                      return Number(result) + Number(value.amount);
+                    }, 0)}
                 </h2>
               </div>
             </div>
@@ -123,9 +114,13 @@ export default function Header() {
                 <h3 className="account__money-subtitle">Expenses</h3>
                 <h2 className="account__money-amount">
                   $
-                  {expense.reduce((result: number, value: any) => {
-                    return Number(result) + Number(value.amount);
-                  }, 0)}
+                  {transaction
+                    .filter(
+                      (value: TransactionType) => value.type === 'expense'
+                    )
+                    .reduce((result: number, value: TransactionType) => {
+                      return Number(result) + Number(value.amount);
+                    }, 0)}
                 </h2>
               </div>
             </div>

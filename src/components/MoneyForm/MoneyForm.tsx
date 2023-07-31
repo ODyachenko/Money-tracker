@@ -8,14 +8,14 @@ import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import './style.scss';
 
-type TransactionType = {
-  amount: number;
+export interface TransactionType {
+  amount: number | string;
   category: string;
   description: string;
   date: string;
   time: string;
   type: string;
-};
+}
 
 const initalState: TransactionType = {
   amount: 0,
@@ -68,6 +68,8 @@ export default function MoneyForm({ transaction }: { transaction: string }) {
           name="amount"
           value={data.amount}
           onChange={onChangeHandler}
+          min="1"
+          max="10000"
         />
       </label>
       <div className="money__settings settings">
