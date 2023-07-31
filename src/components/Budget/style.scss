@@ -1,0 +1,58 @@
+.budget {
+  &__title {
+    position: relative;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 75px;
+  }
+  &__back {
+    position: absolute;
+    left: 0;
+  }
+  &__empty {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #91919f;
+    text-align: center;
+  }
+  &__list {
+    margin-bottom: 20px;
+
+    &-item {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      border-radius: 16px;
+      padding: 16px;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+    &-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+    &-remaining {
+      margin-bottom: 5px;
+    }
+    &-progress {
+      display: block;
+      width: 100%;
+      height: 12px;
+      background: #f1f1fa;
+      border-radius: 12px;
+
+      margin-bottom: 10px;
+    }
+    &-value {
+      font-size: 16px;
+      color: #91919f;
+    }
+  }
+}

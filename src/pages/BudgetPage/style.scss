@@ -3,7 +3,7 @@
 .budget {
   height: 100vh;
   background: $primary-violet;
-  padding-top: 25px;
+  padding: 25px 0 90px;
 
   & .container {
     height: 100%;
@@ -11,15 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
   }
-
-  &__title {
-    position: relative;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 75px;
-  }
-  &__back {
-    position: absolute;
-    left: 0;
-  }
+}
+.create-budget {
+  padding: 25px 0 0;
 }

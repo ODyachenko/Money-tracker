@@ -6,7 +6,7 @@ type FilterType = {
 };
 
 export default function FiltersGroup({ title, items }: FilterType) {
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem]: any = useState(null);
 
   return (
     <div className="filters__group">

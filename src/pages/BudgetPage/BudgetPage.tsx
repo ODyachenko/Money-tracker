@@ -1,59 +1,52 @@
-import { ChangeEvent, useState } from 'react';
-import ArrowBack from '../../components/ArrowBack/ArrowBack';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import BudgetItem from '../../components/Budget/BudgetItem';
+import EmptyBudget from '../../components/Budget/EmptyBudget';
 import Navbar from '../../components/Navbar/Navbar';
+import { setBudgetList, BudgetType } from '../../redux/slices/budgetSlice';
 import './style.scss';
 
-type BudgetFieldType =
-  | ChangeEvent<HTMLInputElement>
-  | ChangeEvent<HTMLSelectElement>;
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
 
 export default function BudgetPage() {
-  const [budgetData, setBudgetData] = useState({
-    amount: '0',
-    category: '',
-  });
+  const { budgetList } = useSelector((state: any) => state.budget);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  function onChangeHandler(event: BudgetFieldType) {
-    setBudgetData({ ...budgetData, [event.target.name]: event.target.value });
-  }
+  useEffect(() => {
+    try {
+      axios(URL).then((res) => dispatch(setBudgetList(res.data)));
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  }, []);
 
   return (
     <section className="budget">
       <div className="container">
-        <h2 className="budget__title section-title">
-          <ArrowBack />
-          Create Budget
-        </h2>
-        <div className="budget__content">
-          <h3 className="budget__subtitle money-subtitle">
-            How much do you want to spend?
-          </h3>
-          <label className="budget__count money-count">
-            $
-            <input
-              type="number"
-              name="amount"
-              value={budgetData.amount}
-              onChange={onChangeHandler}
-            />
-          </label>
-          <div className="budget__settings settings">
-            <select
-              className="budget__field field"
-              name="category"
-              value={budgetData.category}
-              onChange={onChangeHandler}
-            >
-              <option>Category</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Subscription">Subscription</option>
-              <option value="Food">Food</option>
-            </select>
-            <button className="budget__btn primary-btn">Continue</button>
-          </div>
+        <h2 className="budget__title section-title">Julay</h2>
+        <div className="budget__settings settings">
+          {budgetList.length ? (
+            <ul className="budget__list">
+              {budgetList.map((item: any) => {
+                return <BudgetItem key={item.id} {...item} />;
+              })}
+            </ul>
+          ) : (
+            <EmptyBudget />
+          )}
+
+          <button
+            onClick={() => navigate('/create-budget')}
+            className="budget__btn primary-btn"
+          >
+            Create a budget
+          </button>
         </div>
       </div>
-      {/* <Navbar /> */}
+      <Navbar />
     </section>
   );
 }
