@@ -1,6 +1,8 @@
-import graph from '../../assets/img/graph.png';
 import IntervalsTabs from './IntervalsTabs';
+import SpendChart from './SpendChart';
 import './style.scss';
+
+const expenses: number[] = [20, 100, 50, 250, 15];
 
 export default function Spend() {
   return (
@@ -9,7 +11,7 @@ export default function Spend() {
         <h2 className="spend__title section-title">Spend Frequency</h2>
       </div>
       <div className="spend__graph">
-        <img src={graph} alt="graph" />
+        <SpendChart expenses={expenses} />
       </div>
       <div className="container">
         <IntervalsTabs />

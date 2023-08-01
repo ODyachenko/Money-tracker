@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchTransaction } from '../../redux/slices/transactionSlice';
 import Filters from '../../components/Filters/Filters';
-import Navbar from '../../components/Navbar/Navbar';
 import TransactionGroup from '../../components/Tranaction/TransactionGroup';
 import './style.scss';
 
 export default function TransactionPage() {
   const [showFilters, setShowFilters] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    dispatch(fetchTransaction());
+  }
 
   return (
     <section className="transaction">
@@ -20,10 +30,9 @@ export default function TransactionPage() {
           </button>
         </div>
         <TransactionGroup title="Today" />
-        <TransactionGroup title="Yesterday" />
+        {/* <TransactionGroup title="Yesterday" /> */}
       </div>
       <Filters showFilters={showFilters} setShowFilters={setShowFilters} />
-      <Navbar />
     </section>
   );
 }

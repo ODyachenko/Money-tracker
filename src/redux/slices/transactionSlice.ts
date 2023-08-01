@@ -1,6 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-export interface TransactionType {
+export const fetchTransaction: any = createAsyncThunk(
+  'transaction/fetchTransaction',
+  async () => {
+    const response = await axios(
+      'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?sortBy=time'
+    );
+
+    return response.data;
+  }
+);
+
+export type TransactionType = {
   id?: number;
   amount: number | string;
   category: string;
@@ -8,16 +20,18 @@ export interface TransactionType {
   date: string;
   time: string;
   type: string;
-}
+};
 
 interface TransactionState {
   transaction: TransactionType[];
   accountBalance: number;
+  status: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialState: TransactionState = {
   transaction: [],
   accountBalance: 0,
+  status: 'idle',
 };
 
 export const transactionSlice = createSlice({
@@ -30,6 +44,20 @@ export const transactionSlice = createSlice({
     setAccountBalance: (state, action) => {
       state.accountBalance = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTransaction.pending, (state) => {
+      state.status = 'pending';
+      state.transaction = [];
+    });
+    builder.addCase(fetchTransaction.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.transaction = action.payload;
+    });
+    builder.addCase(fetchTransaction.rejected, (state) => {
+      state.status = 'failed';
+      state.transaction = [];
+    });
   },
 });
 

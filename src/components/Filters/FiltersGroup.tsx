@@ -6,7 +6,7 @@ type FilterType = {
 };
 
 export default function FiltersGroup({ title, items }: FilterType) {
-  const [activeItem, setActiveItem]: any = useState(null);
+  const [activeItem, setActiveItem]: React.ComponentState = useState(0);
 
   return (
     <div className="filters__group">

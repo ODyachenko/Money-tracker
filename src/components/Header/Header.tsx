@@ -1,39 +1,33 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TransactionType } from '../../redux/slices/transactionSlice';
 import {
+  fetchBalance,
   setAccountBalance,
-  TransactionType,
-} from '../../redux/slices/transactionSlice';
+} from '../../redux/slices/balanceSlice';
 import axios from 'axios';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
 
 export default function Header() {
+  const { transaction } = useSelector((state: any) => state.transaction);
+  const { accountBalance } = useSelector((state: any) => state.balance);
+  const [isEdit, setIsEdit] = useState(false);
+  const dispatch = useDispatch();
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
-  const [isEdit, setIsEdit] = useState(false);
-  const { transaction, accountBalance } = useSelector(
-    (state: any) => state.transaction
-  );
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    try {
-      axios(`${URL}/Balance`).then((res) => {
-        dispatch(setAccountBalance(res.data[0].balance));
-      });
-    } catch (error: any) {
-      console.error(error.message);
-    }
+    dispatch(fetchBalance());
   }, []);
 
   useEffect(() => {
     if (!!accountBalance) {
       try {
-        axios.put(`${URL}/Balance/userBalance`, {
+        axios.put(URL, {
           balance: accountBalance,
         });
       } catch (error: any) {

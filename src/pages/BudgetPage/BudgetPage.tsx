@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BudgetItem from '../../components/Budget/BudgetItem';
 import EmptyBudget from '../../components/Budget/EmptyBudget';
-import Navbar from '../../components/Navbar/Navbar';
 import { setBudgetList, BudgetType } from '../../redux/slices/budgetSlice';
 import './style.scss';
 
@@ -46,7 +45,6 @@ export default function BudgetPage() {
           </button>
         </div>
       </div>
-      <Navbar />
     </section>
   );
 }

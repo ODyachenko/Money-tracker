@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import balanceSlice from './slices/balanceSlice';
 import budgetSlice from './slices/budgetSlice';
 import transactionSlice from './slices/transactionSlice';
 
@@ -7,6 +8,7 @@ export const store = configureStore({
   reducer: {
     transaction: transactionSlice,
     budget: budgetSlice,
+    balance: balanceSlice,
   },
 });
 

@@ -17,7 +17,10 @@ export default function CircleMenu() {
       >
         <img src={cross} alt="Open menu" />
       </button>
-      <div className={`nav__actions ${isshowMenu ? 'active' : ''}`}>
+      <div
+        onClick={() => setIsShowMenu(false)}
+        className={`nav__actions ${isshowMenu ? 'active' : ''}`}
+      >
         <NavLink to="/income" className="nav__actions-btn nav__actions--income">
           <img src={income} alt="income" />
         </NavLink>

@@ -6,7 +6,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import { TransactionType } from '../../redux/slices/transactionSlice';
+import { setAccountBalance } from '../../redux/slices/balanceSlice';
 import './style.scss';
+import { useDispatch, useSelector } from 'react-redux';
 
 type MoneyFormType = {
   transaction: string;
@@ -22,24 +24,39 @@ const initalState: TransactionType = {
   type: '',
 };
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
 
 export default function MoneyForm({ transaction, categories }: MoneyFormType) {
+  const { accountBalance } = useSelector((state: any) => state.balance);
   const [data, setData] = useState({ ...initalState, type: transaction });
   const [isSend, setIsSend] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSend) {
       try {
-        axios.post(URL, data).then(() => {
+        axios.post(`${URL}/Transaction`, data).then(() => {
           setData({ ...initalState, type: transaction });
           setIsSend(false);
+          changeBalance();
         });
       } catch (error: any) {
         console.error('Error:', error.message);
       }
     }
   }, [data, isSend]);
+
+  function changeBalance() {
+    if (data.type === 'income') {
+      dispatch(
+        setAccountBalance(String(Number(accountBalance) + Number(data.amount)))
+      );
+    } else {
+      dispatch(
+        setAccountBalance(String(Number(accountBalance) - Number(data.amount)))
+      );
+    }
+  }
 
   function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: event.target.value });
