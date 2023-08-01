@@ -10,12 +10,17 @@ export default function BudgetItem({ amount, category }: BudgetType) {
     .reduce((res: number, item: TransactionType) => {
       return Number(res) + Number(item.amount);
     }, 0);
+  const progress = result / (Number(amount) / 100);
+  const attentionСondition = Number(amount) - result <= 0;
 
   return (
     <li className="budget__list-item">
       <div className="budget__list-inner">
         <span className="budget__list-category">{category}</span>
         <svg
+          className={`budget__list-attention ${
+            attentionСondition ? 'show' : ''
+          }`}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="25"
@@ -28,10 +33,22 @@ export default function BudgetItem({ amount, category }: BudgetType) {
           />
         </svg>
       </div>
-      <h2 className="budget__list-remaining section-title">Remaining $0</h2>
-      <span className="budget__list-progress"></span>
+      <h2 className="budget__list-remaining section-title">
+        Remaining ${Number(amount) - result >= 0 ? Number(amount) - result : 0}
+      </h2>
+      <span className="budget__list-progress">
+        <span
+          className="budget__list-progress--item"
+          style={{ width: `${progress}%` }}
+        ></span>
+      </span>
       <span className="budget__list-value">
         ${result} of ${amount}
+      </span>
+      <span
+        className={`budget__list--warning ${attentionСondition ? 'show' : ''}`}
+      >
+        You’ve exceed the limit!
       </span>
     </li>
   );

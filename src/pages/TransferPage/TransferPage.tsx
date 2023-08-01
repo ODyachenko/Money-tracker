@@ -55,7 +55,7 @@ export default function TransferPage() {
     <section className="transfer money">
       <div className="container">
         <h2 className="money__title section-title">
-          <ArrowBack />
+          <ArrowBack path="/" />
           Transfer
         </h2>
         <div className="money__wrapper">

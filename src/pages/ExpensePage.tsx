@@ -15,7 +15,7 @@ export default function ExpensePage() {
     <section className="expense">
       <div className="container">
         <h2 className="money__title section-title">
-          <ArrowBack />
+          <ArrowBack path="/" />
           Expense
         </h2>
         <MoneyForm transaction="expense" categories={categories} />

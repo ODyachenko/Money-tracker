@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setTransaction,
   setAccountBalance,
   TransactionType,
 } from '../../redux/slices/transactionSlice';
@@ -9,9 +8,8 @@ import axios from 'axios';
 import avatar from '../../assets/img/avatar.png';
 import notification from '../../assets/img/notification.svg';
 import './style.scss';
-import { stringify } from 'querystring';
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
 
 export default function Header() {
   const date = new Date();
@@ -24,8 +22,7 @@ export default function Header() {
 
   useEffect(() => {
     try {
-      axios(`${URL}?sortBy=time`).then((res) => {
-        dispatch(setTransaction(res.data[1]));
+      axios(`${URL}/Balance`).then((res) => {
         dispatch(setAccountBalance(res.data[0].balance));
       });
     } catch (error: any) {
@@ -36,7 +33,7 @@ export default function Header() {
   useEffect(() => {
     if (!!accountBalance) {
       try {
-        axios.put(`${URL}/userBalance`, {
+        axios.put(`${URL}/Balance/userBalance`, {
           balance: accountBalance,
         });
       } catch (error: any) {

@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
-export default function ArrowBack() {
+export default function ArrowBack({ path }: { path: string }) {
   const navigate = useNavigate();
 
   return (
     <svg
-      onClick={() => navigate('/')}
+      onClick={() => navigate(path)}
       className="arrow-back"
       xmlns="http://www.w3.org/2000/svg"
       width="24"

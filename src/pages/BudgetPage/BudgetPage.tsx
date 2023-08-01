@@ -26,7 +26,7 @@ export default function BudgetPage() {
   return (
     <section className="budget">
       <div className="container">
-        <h2 className="budget__title section-title">Julay</h2>
+        <h2 className="budget__title section-title">August</h2>
         <div className="budget__settings settings">
           {budgetList.length ? (
             <ul className="budget__list">

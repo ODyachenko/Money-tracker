@@ -43,7 +43,7 @@ export default function CreateBudgetPage() {
     <section className="create-budget budget">
       <div className="container">
         <h2 className="budget__title section-title">
-          <ArrowBack />
+          <ArrowBack path="/budget" />
           Create Budget
         </h2>
         <div className="budget__content">
@@ -70,6 +70,7 @@ export default function CreateBudgetPage() {
               <option value="Shopping">Shopping</option>
               <option value="Subscription">Subscription</option>
               <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
             </select>
             <button
               onClick={() => setFetch(true)}

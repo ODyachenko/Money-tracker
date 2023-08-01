@@ -10,7 +10,7 @@ export default function IncomePage() {
     <section className="income">
       <div className="container">
         <h2 className="money__title section-title">
-          <ArrowBack />
+          <ArrowBack path="/" />
           Income
         </h2>
         <MoneyForm transaction="income" categories={categories} />
