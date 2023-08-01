@@ -3,10 +3,12 @@ import { BudgetType } from '../../redux/slices/budgetSlice';
 import { TransactionType } from '../../redux/slices/transactionSlice';
 
 export default function BudgetItem({ amount, category }: BudgetType) {
-  const { transaction } = useSelector((state: any) => state.transaction);
+  const { transaction } = useSelector(
+    (state: React.ComponentState) => state.transaction
+  );
 
   const result = transaction
-    .filter((transaction: any) => transaction.category === category)
+    .filter((transaction: TransactionType) => transaction.category === category)
     .reduce((res: number, item: TransactionType) => {
       return Number(res) + Number(item.amount);
     }, 0);

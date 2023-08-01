@@ -2,7 +2,7 @@ import IntervalsTabs from './IntervalsTabs';
 import SpendChart from './SpendChart';
 import './style.scss';
 
-const expenses: number[] = [20, 100, 50, 250, 15];
+const expenses: number[] = [10, 10, 20, 100, 50, 250, 15, 45, 30];
 
 export default function Spend() {
   return (

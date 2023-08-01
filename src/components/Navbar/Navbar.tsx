@@ -95,12 +95,12 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [activeLink, setActiveLink] = useState(0);
+  const [activeLink, setActiveLink]: React.ComponentState = useState(0);
 
   return (
     <nav className="nav">
       <ul className="nav__list">
-        {navLinks.map((link, index) => {
+        {navLinks.map((link) => {
           return (
             <NavItem
               key={link.id}

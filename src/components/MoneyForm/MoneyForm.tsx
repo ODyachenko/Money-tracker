@@ -24,10 +24,12 @@ const initalState: TransactionType = {
   type: '',
 };
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
+const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
 
 export default function MoneyForm({ transaction, categories }: MoneyFormType) {
-  const { accountBalance } = useSelector((state: any) => state.balance);
+  const { accountBalance } = useSelector(
+    (state: React.ComponentState) => state.balance
+  );
   const [data, setData] = useState({ ...initalState, type: transaction });
   const [isSend, setIsSend] = useState(false);
   const dispatch = useDispatch();

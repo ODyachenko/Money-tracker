@@ -1,7 +1,7 @@
 import ArrowBack from '../components/ArrowBack/ArrowBack';
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 
-const categories = [
+const categories: string[] = [
   'Shopping',
   'Subscription',
   'Food',

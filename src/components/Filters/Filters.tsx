@@ -6,8 +6,8 @@ type stateType = {
   setShowFilters: (param: boolean) => void;
 };
 
-const filterItems = ['Expense', 'Income', 'Transfer'];
-const SortItems = ['Newest', 'Oldest', 'Highest', 'Lowest'];
+const filterItems: string[] = ['Expense', 'Income', 'Transfer'];
+const SortItems: string[] = ['Oldest', 'Newest', 'Highest', 'Lowest'];
 
 export default function Filters({ showFilters, setShowFilters }: stateType) {
   return (

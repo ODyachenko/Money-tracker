@@ -6,7 +6,7 @@ import TransactionGroup from '../../components/Tranaction/TransactionGroup';
 import './style.scss';
 
 export default function TransactionPage() {
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters]: React.ComponentState = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import cross from '../../assets/img/cross.svg';
 import income from '../../assets/img/income.svg';
 import expense from '../../assets/img/expense.svg';
 import transfer from '../../assets/img/transfer.svg';
 
 export default function CircleMenu() {
-  const [isshowMenu, setIsShowMenu] = useState(false);
+  const [isshowMenu, setIsShowMenu]: React.ComponentState = useState(false);
 
   return (
     <>

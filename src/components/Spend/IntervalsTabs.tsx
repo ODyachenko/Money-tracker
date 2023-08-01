@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './style.scss';
 
-const intervals = ['Today', 'Week', 'Month', 'Year'];
+const intervals: string[] = ['Today', 'Week', 'Month', 'Year'];
 
 export default function IntervalsTabs() {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory]: React.ComponentState = useState(0);
 
   return (
     <ul className="intervals">

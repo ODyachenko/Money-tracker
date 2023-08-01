@@ -4,7 +4,7 @@ import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import './style.scss';
 
-interface TransferType {
+type TransferType = {
   amount: string;
   from: string;
   to: string;
@@ -12,10 +12,10 @@ interface TransferType {
   date: string;
   time: string;
   type: string;
-}
+};
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
-const initialState = {
+const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const initialState: TransferType = {
   amount: '0',
   from: '',
   to: '',
@@ -26,8 +26,8 @@ const initialState = {
 };
 
 export default function TransferPage() {
-  const [data, setData] = useState(initialState);
-  const [isSend, setIsSend] = useState(false);
+  const [data, setData]: React.ComponentState = useState(initialState);
+  const [isSend, setIsSend]: React.ComponentState = useState(false);
 
   useEffect(() => {
     if (isSend) {

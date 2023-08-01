@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import ArrowBack from '../components/ArrowBack/ArrowBack';
 import MoneyForm from '../components/MoneyForm/MoneyForm';
 import SucessPopup from '../components/SuccessPopup/SucessPopup';
 
-const categories = ['Salary', 'Advance'];
+const categories: string[] = ['Salary', 'Advance'];
 
 export default function IncomePage() {
   return (

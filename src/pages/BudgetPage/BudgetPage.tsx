@@ -7,10 +7,12 @@ import EmptyBudget from '../../components/Budget/EmptyBudget';
 import { setBudgetList, BudgetType } from '../../redux/slices/budgetSlice';
 import './style.scss';
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
+const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
 
 export default function BudgetPage() {
-  const { budgetList } = useSelector((state: any) => state.budget);
+  const { budgetList } = useSelector(
+    (state: React.ComponentState) => state.budget
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

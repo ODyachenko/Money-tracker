@@ -13,8 +13,12 @@ import './style.scss';
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
 
 export default function Header() {
-  const { transaction } = useSelector((state: any) => state.transaction);
-  const { accountBalance } = useSelector((state: any) => state.balance);
+  const { transaction } = useSelector(
+    (state: React.ComponentState) => state.transaction
+  );
+  const { accountBalance } = useSelector(
+    (state: React.ComponentState) => state.balance
+  );
   const [isEdit, setIsEdit] = useState(false);
   const dispatch = useDispatch();
   const date = new Date();

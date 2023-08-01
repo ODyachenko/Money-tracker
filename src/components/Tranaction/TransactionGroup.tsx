@@ -4,7 +4,9 @@ import { TransactionType } from '../../redux/slices/transactionSlice';
 import EmptyTransaction from './EmptyTransaction';
 
 export default function TransactionGroup({ title }: { title: string }) {
-  const { transaction } = useSelector((state: any) => state.transaction);
+  const { transaction } = useSelector(
+    (state: React.ComponentState) => state.transaction
+  );
 
   return (
     <div className="transaction__group">

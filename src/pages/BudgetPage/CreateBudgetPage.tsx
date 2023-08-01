@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import { setBudgetList } from '../../redux/slices/budgetSlice';
 import './style.scss';
@@ -9,35 +14,51 @@ type BudgetFieldType =
   | ChangeEvent<HTMLInputElement>
   | ChangeEvent<HTMLSelectElement>;
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
+const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
 const initialState = {
   id: '',
   amount: 0,
   category: '',
 };
 
+const categories: string[] = [
+  'Shopping',
+  'Subscription',
+  'Food',
+  'Transport',
+  'Gas',
+  'Pet',
+];
+
 export default function CreateBudgetPage() {
-  const [fetch, setFetch] = useState(false);
-  const { budgetList } = useSelector((state: any) => state.budget);
+  const [send, setSend]: React.ComponentState = useState(false);
+  const { budgetList } = useSelector(
+    (state: React.ComponentState) => state.budget
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (fetch) {
+    if (send) {
       try {
-        axios.post(URL, budgetList).then((res) => {
+        axios.post(URL, budgetList).then(() => {
           dispatch(setBudgetList(initialState));
+          setSend(false);
         });
       } catch (error: any) {
         console.error(error.message);
       }
     }
-  }, [fetch]);
+  }, [send]);
 
   function onChangeHandler(event: BudgetFieldType) {
     dispatch(
       setBudgetList({ ...budgetList, [event.target.name]: event.target.value })
     );
   }
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setBudgetList({ ...budgetList, ['category']: event.target.value });
+  };
 
   return (
     <section className="create-budget budget">
@@ -60,23 +81,27 @@ export default function CreateBudgetPage() {
             />
           </label>
           <div className="budget__settings settings">
-            <select
-              className="budget__field field"
-              name="category"
-              value={budgetList.category}
-              onChange={onChangeHandler}
-            >
-              <option>Category</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Subscription">Subscription</option>
-              <option value="Food">Food</option>
-              <option value="Transport">Transport</option>
-            </select>
+            <FormControl fullWidth className="field">
+              <InputLabel>Category</InputLabel>
+              <Select
+                label="Category"
+                value={budgetList.category}
+                onChange={handleChange}
+              >
+                {categories.map((category) => {
+                  return (
+                    <MenuItem key={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
             <button
-              onClick={() => setFetch(true)}
+              onClick={() => setSend(true)}
               className="budget__btn primary-btn"
             >
-              Continue
+              {send ? <BeatLoader color="#fff" /> : 'Continue'}
             </button>
           </div>
         </div>
