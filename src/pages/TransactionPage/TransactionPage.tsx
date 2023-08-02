@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransaction } from '../../redux/slices/transactionSlice';
 import Filters from '../../components/Filters/Filters';
 import TransactionGroup from '../../components/Tranaction/TransactionGroup';
 import './style.scss';
+import { setIsSend } from '../../redux/slices/filterSlice';
 
 export default function TransactionPage() {
   const [showFilters, setShowFilters]: React.ComponentState = useState(false);
+  const { sortParam, filterParam, isSend } = useSelector(
+    (state: React.ComponentState) => state.filter
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchTransactionData();
+    dispatch(setIsSend(false));
+  }, [isSend]);
 
-  async function fetchData() {
-    dispatch(fetchTransaction());
+  async function fetchTransactionData() {
+    dispatch(fetchTransaction({ sortParam, filterParam }));
   }
 
   return (

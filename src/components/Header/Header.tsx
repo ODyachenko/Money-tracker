@@ -31,26 +31,26 @@ export default function Header() {
 
   useEffect(() => {
     if (send) {
-      try {
-        axios
-          .put(URL, {
-            balance: accountBalance,
-          })
-          .then(() => {
-            setSend(false);
-          });
-      } catch (error: any) {
-        console.error(error.message);
-      }
+      changeBalance();
     }
   }, [isEdit]);
 
-  function onChangeBalance(event: ChangeEvent<HTMLInputElement>) {
-    dispatch(setAccountBalance(event.target.value));
+  async function changeBalance() {
+    try {
+      await axios
+        .put(URL, {
+          balance: accountBalance,
+        })
+        .then(() => {
+          setSend(false);
+        });
+    } catch (error: any) {
+      console.error(error.message);
+    }
   }
 
-  function onBlurHandler() {
-    setIsEdit(false);
+  function onChangeBalance(event: ChangeEvent<HTMLInputElement>) {
+    dispatch(setAccountBalance(event.target.value));
   }
 
   return (
@@ -74,7 +74,7 @@ export default function Header() {
                 autoFocus
                 value={accountBalance}
                 onChange={onChangeBalance}
-                onBlur={onBlurHandler}
+                onBlur={() => setIsEdit(false)}
               />
             ) : (
               `$${accountBalance}`

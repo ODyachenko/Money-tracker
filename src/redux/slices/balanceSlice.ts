@@ -14,6 +14,15 @@ export const fetchBalance: any = createAsyncThunk(
   }
 );
 
+// export const changeBalance: any = createAsyncThunk(
+//   'balance/changeBalance',
+//   async () => {
+//     const response = await axios(String(url));
+
+//     // return response.data.balance;
+//   }
+// );
+
 interface balanceState {
   accountBalance: number;
   status: 'idle' | 'pending' | 'succeeded' | 'failed';

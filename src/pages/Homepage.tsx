@@ -7,13 +7,14 @@ import Spend from '../components/Spend/Spend';
 
 export default function Homepage() {
   const dispatch = useDispatch();
+  const sortParam = 'time';
 
   useEffect(() => {
     fetchTransactionData();
   }, []);
 
   async function fetchTransactionData() {
-    dispatch(fetchTransaction());
+    dispatch(fetchTransaction({ sortParam }));
   }
 
   return (

@@ -6,9 +6,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import { TransactionType } from '../../redux/slices/transactionSlice';
-import { setAccountBalance } from '../../redux/slices/balanceSlice';
 import './style.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 type MoneyFormType = {
   transaction: string;
@@ -27,12 +26,11 @@ const initalState: TransactionType = {
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
 
 export default function MoneyForm({ transaction, categories }: MoneyFormType) {
+  const [data, setData] = useState({ ...initalState, type: transaction });
+  const [isSend, setIsSend] = useState(false);
   const { accountBalance } = useSelector(
     (state: React.ComponentState) => state.balance
   );
-  const [data, setData] = useState({ ...initalState, type: transaction });
-  const [isSend, setIsSend] = useState(false);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSend) {
@@ -43,7 +41,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
 
   async function postTransactionData() {
     try {
-      axios.post(`${URL}/Transaction`, data).then(() => {
+      await axios.post(`${URL}/Transaction`, data).then(() => {
         setData({ ...initalState, type: transaction });
         setIsSend(false);
       });
@@ -55,7 +53,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
   async function changeBalance() {
     if (data.type === 'income') {
       try {
-        axios.put(
+        await axios.put(
           'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance',
           {
             balance: String(Number(accountBalance) + Number(data.amount)),
@@ -66,7 +64,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
       }
     } else {
       try {
-        axios.put(
+        await axios.put(
           'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance',
           {
             balance: String(Number(accountBalance) - Number(data.amount)),
@@ -78,7 +76,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
     }
   }
 
-  function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
+  function onChangeField(event: ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: event.target.value });
   }
 
@@ -87,7 +85,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
     setIsSend(true);
   }
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const onChangeSelect = (event: SelectChangeEvent) => {
     setData({ ...data, ['category']: event.target.value });
   };
 
@@ -100,7 +98,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
           type="number"
           name="amount"
           value={data.amount}
-          onChange={onChangeHandler}
+          onChange={onChangeField}
           min="1"
           max="10000"
         />
@@ -111,7 +109,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
           <Select
             label="Category"
             value={data.category}
-            onChange={handleChange}
+            onChange={onChangeSelect}
           >
             {categories.map((category) => {
               return (
@@ -128,7 +126,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
             className="money__field money--description field"
             name="description"
             value={data.description}
-            onChange={onChangeHandler}
+            onChange={onChangeField}
             type="text"
             required
           />
@@ -139,7 +137,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
           type="date"
           name="date"
           value={data.date}
-          onChange={onChangeHandler}
+          onChange={onChangeField}
           required
         />
         <input
@@ -147,7 +145,7 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
           type="time"
           name="time"
           value={data.time}
-          onChange={onChangeHandler}
+          onChange={onChangeField}
           required
         />
         <button className="money__btn primary-btn" type="submit">

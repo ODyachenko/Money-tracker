@@ -1,25 +1,35 @@
-import { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setActiveFilter,
+  setFilterParam,
+} from '../../redux/slices/filterSlice';
 
-type FilterType = {
-  title: string;
-  items: string[];
-};
+const filterItems: string[] = ['Expense', 'Income', 'Transfer'];
 
-export default function FiltersGroup({ title, items }: FilterType) {
-  const [activeItem, setActiveItem]: React.ComponentState = useState(0);
+export default function FiltersGroup() {
+  const { activeFilter } = useSelector(
+    (state: React.ComponentState) => state.filter
+  );
+  const dispatch = useDispatch();
+
+  function onClickFilterItem(index: number) {
+    dispatch(setActiveFilter(index));
+    dispatch(setFilterParam(filterItems[index].toLowerCase()));
+  }
 
   return (
     <div className="filters__group">
-      <h2 className="filters__group-title section-title">{title}</h2>
+      <h2 className="filters__group-title section-title">Filter By</h2>
       <ul className="filters__group-list">
-        {items.map((item, index) => {
+        {filterItems.map((item, index) => {
           return (
             <li
               key={item}
               className={`filters__group-item ${
-                activeItem === index ? 'active' : ''
+                activeFilter === index ? 'active' : ''
               } filters-btn`}
-              onClick={() => setActiveItem(index)}
+              onClick={() => onClickFilterItem(index)}
             >
               {item}
             </li>

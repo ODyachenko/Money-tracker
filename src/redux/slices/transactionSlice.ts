@@ -1,14 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url: URL = new URL(
-  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?'
-);
+const url = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?';
 
 export const fetchTransaction: any = createAsyncThunk(
   'transaction/fetchTransaction',
-  async () => {
-    const response = await axios(String(url));
+  async (params: any) => {
+    const { sortParam, filterParam } = params;
+    const sortRule = sortParam ? `sortBy=${sortParam}` : '';
+    const filterRule = filterParam ? `&type=${filterParam}` : '';
+
+    const response = await axios(`${url}${sortRule}${filterRule}`);
 
     return response.data;
   }
@@ -26,13 +28,11 @@ export type TransactionType = {
 
 interface TransactionState {
   transaction: TransactionType[];
-  accountBalance: number;
   status: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialState: TransactionState = {
   transaction: [],
-  accountBalance: 0,
   status: 'idle',
 };
 
@@ -42,9 +42,6 @@ export const transactionSlice = createSlice({
   reducers: {
     setTransaction: (state, action) => {
       state.transaction = action.payload;
-    },
-    setAccountBalance: (state, action) => {
-      state.accountBalance = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -64,6 +61,6 @@ export const transactionSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setTransaction, setAccountBalance } = transactionSlice.actions;
+export const { setTransaction } = transactionSlice.actions;
 
 export default transactionSlice.reducer;
