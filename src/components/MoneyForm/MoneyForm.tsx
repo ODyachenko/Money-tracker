@@ -36,27 +36,45 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
 
   useEffect(() => {
     if (isSend) {
-      try {
-        axios.post(`${URL}/Transaction`, data).then(() => {
-          setData({ ...initalState, type: transaction });
-          setIsSend(false);
-          changeBalance();
-        });
-      } catch (error: any) {
-        console.error('Error:', error.message);
-      }
+      postTransactionData();
+      changeBalance();
     }
   }, [data, isSend]);
 
-  function changeBalance() {
+  async function postTransactionData() {
+    try {
+      axios.post(`${URL}/Transaction`, data).then(() => {
+        setData({ ...initalState, type: transaction });
+        setIsSend(false);
+      });
+    } catch (error: any) {
+      console.error('Error:', error.message);
+    }
+  }
+
+  async function changeBalance() {
     if (data.type === 'income') {
-      dispatch(
-        setAccountBalance(String(Number(accountBalance) + Number(data.amount)))
-      );
+      try {
+        axios.put(
+          'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance',
+          {
+            balance: String(Number(accountBalance) + Number(data.amount)),
+          }
+        );
+      } catch (error: any) {
+        console.error(error.message);
+      }
     } else {
-      dispatch(
-        setAccountBalance(String(Number(accountBalance) - Number(data.amount)))
-      );
+      try {
+        axios.put(
+          'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance',
+          {
+            balance: String(Number(accountBalance) - Number(data.amount)),
+          }
+        );
+      } catch (error: any) {
+        console.log(error.message);
+      }
     }
   }
 

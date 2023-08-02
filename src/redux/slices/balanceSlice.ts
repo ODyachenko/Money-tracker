@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
+const url: URL = new URL(
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance'
+);
 
 export const fetchBalance: any = createAsyncThunk(
   'balance/fetchBalance',
   async () => {
-    const response = await axios(URL);
+    const response = await axios(String(url));
 
     return response.data.balance;
   }

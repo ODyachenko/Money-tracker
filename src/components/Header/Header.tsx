@@ -20,6 +20,7 @@ export default function Header() {
     (state: React.ComponentState) => state.balance
   );
   const [isEdit, setIsEdit] = useState(false);
+  const [send, setSend] = useState(false);
   const dispatch = useDispatch();
   const date = new Date();
   const month = date.toLocaleString('en', { month: 'long' });
@@ -29,11 +30,15 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!!accountBalance) {
+    if (send) {
       try {
-        axios.put(URL, {
-          balance: accountBalance,
-        });
+        axios
+          .put(URL, {
+            balance: accountBalance,
+          })
+          .then(() => {
+            setSend(false);
+          });
       } catch (error: any) {
         console.error(error.message);
       }

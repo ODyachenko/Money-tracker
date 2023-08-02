@@ -9,10 +9,10 @@ export default function Homepage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    fetchTransactionData();
   }, []);
 
-  async function fetchData() {
+  async function fetchTransactionData() {
     dispatch(fetchTransaction());
   }
 

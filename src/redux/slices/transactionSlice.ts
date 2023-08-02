@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const url: URL = new URL(
+  'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?'
+);
+
 export const fetchTransaction: any = createAsyncThunk(
   'transaction/fetchTransaction',
   async () => {
-    const response = await axios(
-      'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction?sortBy=time'
-    );
+    const response = await axios(String(url));
 
     return response.data;
   }
