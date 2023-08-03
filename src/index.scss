@@ -42,6 +42,7 @@ body {
 section.expense,
 section.income {
   height: 100vh;
+  overflow: hidden;
   padding-top: 25px;
   padding-bottom: 90px;
 }
@@ -110,7 +111,7 @@ section.income {
   font-family: inherit;
   color: #91919f;
   background: #fff;
-  border: 2px solid #f1f1fa;
+  border: 1px solid #f1f1fa;
   border-radius: 12px;
   transition: all 0.5s ease;
 
@@ -139,11 +140,11 @@ section.income {
     scale: 0.9;
   }
 }
-.settings .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-  font-family: Inter;
-  font-size: 14px;
-  border-radius: 12px;
-}
-.settings .css-q8hpuo-MuiFormControl-root {
-  margin-bottom: 15px;
-}
+// .settings .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+//   font-family: Inter;
+//   font-size: 14px;
+//   border-radius: 12px;
+// }
+// .settings .css-q8hpuo-MuiFormControl-root {
+//   margin-bottom: 15px;
+// }

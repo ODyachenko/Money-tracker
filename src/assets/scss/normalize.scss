@@ -216,3 +216,7 @@ input[type='number']::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+// input:-webkit-autofill,
+// input:-webkit-autofill:focus {
+//   transition: background-color 0s 600000s, color 0s 600000s;
+// }

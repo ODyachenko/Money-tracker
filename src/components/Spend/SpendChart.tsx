@@ -5,7 +5,7 @@ export default function SpendChart({ expenses }: { expenses: number[] }) {
     <LineChart
       xAxis={[
         {
-          data: [0, 4, 7, 10, 13, 16, 19, 21, 23],
+          data: [0, 4, 7, 10, 13],
         },
       ]}
       margin={{ top: 0, bottom: 0, left: 0, right: 0 }}

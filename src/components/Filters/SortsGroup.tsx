@@ -24,12 +24,12 @@ const sortItems: SortType[] = [
   {
     name: 'Highest',
     value: 'amount',
-    type: 'asc',
+    type: 'desc',
   },
   {
     name: 'Lowest',
     value: 'amount',
-    type: 'desc',
+    type: 'asc',
   },
 ];
 

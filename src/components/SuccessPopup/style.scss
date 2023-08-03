@@ -12,9 +12,9 @@
   right: 0;
   z-index: 1000;
 
-  &:not(.show) {
-    display: none;
-  }
+  // &:not(.show) {
+  //   display: none;
+  // }
 
   &__window {
     background: #fff;

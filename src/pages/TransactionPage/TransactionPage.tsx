@@ -35,7 +35,6 @@ export default function TransactionPage() {
           </button>
         </div>
         <TransactionGroup title="Today" />
-        {/* <TransactionGroup title="Yesterday" /> */}
       </div>
       <Filters showFilters={showFilters} setShowFilters={setShowFilters} />
     </section>
