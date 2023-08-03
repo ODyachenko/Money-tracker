@@ -6,32 +6,33 @@
   align-items: center;
   justify-content: space-between;
   color: #91919f;
+  background: $violet-bg;
+  border-radius: 32px;
 
   margin: 0 auto;
 
   &__item {
-    width: 70px;
-    height: 34px;
+    width: 50%;
     flex-shrink: 0;
-    line-height: 16px;
+    line-height: 1;
     text-align: center;
-    border-radius: 16px;
-    // padding: 8px 25px;
-    padding: 8px 0;
+    border-radius: 32px;
+    padding: 15px 0;
 
     &.active {
-      color: $primary-orange;
-      background: $primary-orange-bg;
+      color: #fff;
+      background: $primary-violet;
     }
   }
 }
 
 .spend {
   &__title {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   &__graph {
-    margin-bottom: 10px;
+    max-width: 250px;
+    margin: 0 auto 20px;
 
     & img {
       margin: 0 auto;

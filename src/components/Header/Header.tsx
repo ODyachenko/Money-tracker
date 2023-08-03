@@ -1,6 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TransactionType } from '../../redux/slices/transactionSlice';
+import {
+  setIncome,
+  TransactionType,
+} from '../../redux/slices/transactionSlice';
 import {
   fetchBalance,
   setAccountBalance,
@@ -52,6 +55,18 @@ export default function Header() {
   function onChangeBalance(event: ChangeEvent<HTMLInputElement>) {
     dispatch(setAccountBalance(event.target.value));
   }
+
+  const income = transaction
+    .filter((value: TransactionType) => value.type === 'income')
+    .reduce((result: number, value: TransactionType) => {
+      return Number(result) + Number(value.amount);
+    }, 0);
+
+  const expenses = transaction
+    .filter((value: TransactionType) => value.type === 'expense')
+    .reduce((result: number, value: TransactionType) => {
+      return Number(result) + Number(value.amount);
+    }, 0);
 
   return (
     <header className="header block">
@@ -113,14 +128,7 @@ export default function Header() {
               </span>
               <div className="account__money-content">
                 <h3 className="account__money-subtitle">Income</h3>
-                <h2 className="account__money-amount">
-                  $
-                  {transaction
-                    .filter((value: TransactionType) => value.type === 'income')
-                    .reduce((result: number, value: TransactionType) => {
-                      return Number(result) + Number(value.amount);
-                    }, 0)}
-                </h2>
+                <h2 className="account__money-amount">${income}</h2>
               </div>
             </div>
             <div className="account__money-expense">
@@ -155,16 +163,7 @@ export default function Header() {
               </span>
               <div className="account__money-content">
                 <h3 className="account__money-subtitle">Expenses</h3>
-                <h2 className="account__money-amount">
-                  $
-                  {transaction
-                    .filter(
-                      (value: TransactionType) => value.type === 'expense'
-                    )
-                    .reduce((result: number, value: TransactionType) => {
-                      return Number(result) + Number(value.amount);
-                    }, 0)}
-                </h2>
+                <h2 className="account__money-amount">${expenses}</h2>
               </div>
             </div>
           </div>

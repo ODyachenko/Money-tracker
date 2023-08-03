@@ -1,11 +1,18 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchTransaction } from '../redux/slices/transactionSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchTransaction,
+  setExpenses,
+  setIncome,
+} from '../redux/slices/transactionSlice';
 import Header from '../components/Header/Header';
 import RecentTransaction from '../components/RecentTransaction/RecentTransaction';
 import Spend from '../components/Spend/Spend';
 
 export default function Homepage() {
+  const { transaction } = useSelector(
+    (state: React.ComponentState) => state.transaction
+  );
   const dispatch = useDispatch();
   const sortParam = 'time';
 
@@ -20,7 +27,7 @@ export default function Homepage() {
   return (
     <>
       <Header />
-      <Spend />
+      {!!transaction.length && <Spend />}
       <RecentTransaction />
     </>
   );

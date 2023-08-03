@@ -18,7 +18,7 @@ export const fetchTransaction: any = createAsyncThunk(
 
 export type TransactionType = {
   id?: number;
-  amount: number | string;
+  amount: number;
   category: string;
   description: string;
   date: string;
@@ -28,11 +28,15 @@ export type TransactionType = {
 
 interface TransactionState {
   transaction: TransactionType[];
+  income: number;
+  expenses: number;
   status: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialState: TransactionState = {
   transaction: [],
+  income: 0,
+  expenses: 0,
   status: 'idle',
 };
 
@@ -42,6 +46,12 @@ export const transactionSlice = createSlice({
   reducers: {
     setTransaction: (state, action) => {
       state.transaction = action.payload;
+    },
+    setIncome: (state, action) => {
+      state.income = action.payload;
+    },
+    setExpenses: (state, action) => {
+      state.expenses = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -61,6 +71,7 @@ export const transactionSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setTransaction } = transactionSlice.actions;
+export const { setTransaction, setIncome, setExpenses } =
+  transactionSlice.actions;
 
 export default transactionSlice.reducer;

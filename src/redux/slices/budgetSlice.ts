@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface BudgetType {
+export type BudgetType = {
   id?: string;
   amount: number | string;
   category: string;
-}
-
-type BudgetState = {
-  budgetList: BudgetType;
 };
+
+interface BudgetState {
+  budgetList: BudgetType;
+}
 
 const initialState: BudgetState = {
   budgetList: {

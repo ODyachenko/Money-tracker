@@ -56,8 +56,10 @@ export default function CreateBudgetPage() {
     );
   }
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setBudgetList({ ...budgetList, ['category']: event.target.value });
+  const onChangeSelect = (event: SelectChangeEvent) => {
+    dispatch(
+      setBudgetList({ ...budgetList, ['category']: event.target.value })
+    );
   };
 
   return (
@@ -81,12 +83,19 @@ export default function CreateBudgetPage() {
             />
           </label>
           <div className="budget__settings settings">
-            <FormControl fullWidth className="field">
+            <FormControl className="field" fullWidth>
               <InputLabel>Category</InputLabel>
               <Select
                 label="Category"
                 value={budgetList.category}
-                onChange={handleChange}
+                onChange={onChangeSelect}
+                sx={{
+                  borderRadius: '12px',
+                  marginBottom: '15px',
+                  '& fieldset': {
+                    borderColor: '#f1f1fa',
+                  },
+                }}
               >
                 {categories.map((category) => {
                   return (

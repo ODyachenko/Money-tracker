@@ -1,11 +1,16 @@
-import { useState } from 'react';
 import './style.scss';
 
-const intervals: string[] = ['Today', 'Week', 'Month', 'Year'];
+type ActiveCategory = {
+  activeCategory: number;
+  setActiveCategory: (value: number) => void;
+};
 
-export default function IntervalsTabs() {
-  const [activeCategory, setActiveCategory]: React.ComponentState = useState(0);
+const intervals: string[] = ['Expense', 'Income'];
 
+export default function SpendTabs({
+  activeCategory,
+  setActiveCategory,
+}: ActiveCategory) {
   return (
     <ul className="intervals">
       {intervals.map((interval, index) => {

@@ -50,6 +50,7 @@ section.income {
 .income .container,
 .transfer .container {
   height: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
