@@ -12,7 +12,8 @@ export default function TransactionItem({
     <li className="transaction__item">
       <span className="transaction__ico">
         <img
-          src={require(`../../assets/img/${category}.svg`)}
+          // src={require(`../../assets/img/${category}.svg`)}
+          src={`img/${category}.svg`}
           alt="Transaction icon"
         />
       </span>
