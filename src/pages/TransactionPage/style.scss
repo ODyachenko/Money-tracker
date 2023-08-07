@@ -1,6 +1,4 @@
 .transaction {
-  padding: 25px 0 90px;
-
   &__inner {
     display: flex;
     align-items: center;
@@ -17,6 +15,7 @@
     justify-content: center;
     border: 1px solid #f1f1fa;
     border-radius: 8px;
+    cursor: pointer;
 
     &-item {
       width: 15px;
@@ -45,6 +44,14 @@
         width: 10px;
         bottom: 10px;
       }
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  .transaction {
+    &__inner {
+      margin-bottom: 40px;
     }
   }
 }

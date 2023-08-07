@@ -1,9 +1,11 @@
 @import '../../assets/scss/variables.scss';
 
 .filters {
+  max-width: 900px;
   background: #fff;
   border-radius: 24px 24px 0 0;
   transition: all 0.5s ease;
+  margin: auto;
   padding: 25px 15px;
 
   position: fixed;
@@ -39,7 +41,11 @@
     text-align: center;
     border: 1px solid #e3e5e5;
     border-radius: 24px;
+    cursor: pointer;
     padding: 10px 15px;
+  }
+  &__apply {
+    margin: 0 auto;
   }
   &__group {
     &:not(:last-child) {

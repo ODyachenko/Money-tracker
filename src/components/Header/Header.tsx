@@ -1,16 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setIncome,
-  TransactionType,
-} from '../../redux/slices/transactionSlice';
+import { TransactionType } from '../../redux/slices/transactionSlice';
 import {
   fetchBalance,
   setAccountBalance,
 } from '../../redux/slices/balanceSlice';
 import axios from 'axios';
-import avatar from '../../assets/img/avatar.png';
-import notification from '../../assets/img/notification.svg';
 import './style.scss';
 
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
@@ -23,17 +18,16 @@ export default function Header() {
     (state: React.ComponentState) => state.balance
   );
   const [isEdit, setIsEdit] = useState(false);
-  const [send, setSend] = useState(false);
+  const [isSend, setIsSend] = useState(false);
   const dispatch = useDispatch();
-  const date = new Date();
-  const month = date.toLocaleString('en', { month: 'long' });
+  const month = new Date().toLocaleString('en', { month: 'long' });
 
   useEffect(() => {
     dispatch(fetchBalance());
   }, []);
 
   useEffect(() => {
-    if (send) {
+    if (isSend) {
       changeBalance();
     }
   }, [isEdit]);
@@ -45,7 +39,7 @@ export default function Header() {
           balance: accountBalance,
         })
         .then(() => {
-          setSend(false);
+          setIsSend(false);
         });
     } catch (error: any) {
       console.error(error.message);
@@ -54,6 +48,10 @@ export default function Header() {
 
   function onChangeBalance(event: ChangeEvent<HTMLInputElement>) {
     dispatch(setAccountBalance(event.target.value));
+  }
+  function onBlurBalance() {
+    setIsSend(true);
+    setIsEdit(false);
   }
 
   const income = transaction
@@ -72,13 +70,7 @@ export default function Header() {
     <header className="header block">
       <div className="container">
         <div className="header__inner">
-          <img className="header__avatar" src={avatar} alt="user avatar" />
           <button className="header__month secondary-btn">{month}</button>
-          <img
-            className="header__notification"
-            src={notification}
-            alt="Notification"
-          />
         </div>
         <div className="header__account account">
           <h2 className="account__subtitle">Account Balance</h2>
@@ -89,7 +81,7 @@ export default function Header() {
                 autoFocus
                 value={accountBalance}
                 onChange={onChangeBalance}
-                onBlur={() => setIsEdit(false)}
+                onBlur={onBlurBalance}
               />
             ) : (
               `$${accountBalance}`

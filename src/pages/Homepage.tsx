@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchTransaction,
-  setExpenses,
-  setIncome,
-} from '../redux/slices/transactionSlice';
 import Header from '../components/Header/Header';
 import RecentTransaction from '../components/RecentTransaction/RecentTransaction';
 import Spend from '../components/Spend/Spend';
+import { fetchTransaction } from '../redux/slices/transactionSlice';
 
 export default function Homepage() {
   const { transaction } = useSelector(

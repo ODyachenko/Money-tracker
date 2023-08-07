@@ -1,13 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import './style.scss';
+import SucessPopup from '../../components/SuccessPopup/SucessPopup';
 
 type TransferType = {
-  amount: string;
+  amount: number;
   from: string;
   to: string;
+  category: string;
   description: string;
   date: string;
   time: string;
@@ -15,19 +17,22 @@ type TransferType = {
 };
 
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
+const date = new Date();
 const initialState: TransferType = {
-  amount: '0',
+  amount: 0,
   from: '',
   to: '',
+  category: 'Transfer',
   description: '',
-  date: '',
-  time: '',
+  date: date.toISOString().slice(0, 10),
+  time: date.toTimeString().slice(0, 5),
   type: 'expense',
 };
 
 export default function TransferPage() {
   const [data, setData]: React.ComponentState = useState(initialState);
   const [isSend, setIsSend]: React.ComponentState = useState(false);
+  const [showPopup, setShowPopup]: React.ComponentState = useState(false);
 
   useEffect(() => {
     if (isSend) {
@@ -35,9 +40,12 @@ export default function TransferPage() {
         axios.post(URL, data).then(() => {
           setData(initialState);
           setIsSend(false);
+          setShowPopup(true);
         });
       } catch (error: any) {
         console.error('Error', error.message);
+      } finally {
+        setTimeout(() => setShowPopup(false), 1000);
       }
     }
   }, [data, isSend]);
@@ -45,8 +53,10 @@ export default function TransferPage() {
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: event.target.value });
   }
-
-  function onClickHandler(event: React.MouseEvent) {
+  function onChangeAmount(event: React.ChangeEvent<HTMLInputElement>) {
+    setData({ ...data, [event.target.name]: +event.target.value });
+  }
+  function onSubmitHandler(event: React.FormEvent) {
     event.preventDefault();
     setIsSend(true);
   }
@@ -58,15 +68,18 @@ export default function TransferPage() {
           <ArrowBack path="/" />
           Transfer
         </h2>
-        <div className="money__wrapper">
+        <form className="money__wrapper" onSubmit={onSubmitHandler}>
           <h3 className="money__subtitle money-subtitle">How much?</h3>
           <label className="money__count money-count">
             $
             <input
-              type="number"
+              type="text"
               name="amount"
               value={data.amount}
-              onChange={onChangeHandler}
+              onChange={onChangeAmount}
+              min="1"
+              max="10000"
+              required
             />
           </label>
           <div className="money__settings settings">
@@ -133,15 +146,12 @@ export default function TransferPage() {
               onChange={onChangeHandler}
               required
             />
-            <button
-              onClick={onClickHandler}
-              className="money__btn primary-btn"
-              type="submit"
-            >
+            <button className="money__btn primary-btn" type="submit">
               {isSend ? <BeatLoader color="#fff" /> : 'Continue'}
             </button>
           </div>
-        </div>
+        </form>
+        {showPopup && <SucessPopup />}
       </div>
     </section>
   );

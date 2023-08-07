@@ -12,6 +12,7 @@ export default function TransactionPage() {
     (state: React.ComponentState) => state.filter
   );
   const dispatch = useDispatch();
+  const month = new Date().toLocaleString('en', { month: 'long' });
 
   useEffect(() => {
     fetchTransactionData();
@@ -26,7 +27,7 @@ export default function TransactionPage() {
     <section className="transaction">
       <div className="container">
         <div className="transaction__inner">
-          <span className="transaction__date secondary-btn">Month</span>
+          <span className="transaction__date secondary-btn">{month}</span>
           <button
             className="transaction__filters"
             onClick={() => setShowFilters(true)}

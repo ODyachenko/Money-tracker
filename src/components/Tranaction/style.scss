@@ -1,6 +1,8 @@
 @import '../../assets//scss/variables.scss';
 
 .transaction {
+  padding: 25px 0 0;
+
   &__group {
     &-title {
       margin-bottom: 15px;
@@ -63,5 +65,11 @@
       font-size: 15px;
       color: #91919f;
     }
+  }
+}
+
+@media (min-width: 640px) {
+  .transaction {
+    padding: 40px 0 0;
   }
 }

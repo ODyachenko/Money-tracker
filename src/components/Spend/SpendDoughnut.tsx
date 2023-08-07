@@ -1,19 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import {
-  setExpenses,
-  TransactionType,
-} from '../../redux/slices/transactionSlice';
-import { useEffect } from 'react';
+import { TransactionType } from '../../redux/slices/transactionSlice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function SpendDoughnut({ categories }: any) {
-  const { transaction, expenses } = useSelector(
+  const { transaction } = useSelector(
     (state: React.ComponentState) => state.transaction
   );
-  const dispatch = useDispatch();
 
   const moneyData = categories.names.map((value: string) => {
     return transaction

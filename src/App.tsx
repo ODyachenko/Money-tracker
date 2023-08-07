@@ -8,7 +8,22 @@ import BudgetPage from './pages/BudgetPage/BudgetPage';
 import CreateBudgetPage from './pages/BudgetPage/CreateBudgetPage';
 import Navbar from './components/Navbar/Navbar';
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchTransaction } from './redux/slices/transactionSlice';
+
 function App() {
+  const dispatch = useDispatch();
+  const sortParam = 'time';
+
+  useEffect(() => {
+    fetchTransactionData();
+  }, []);
+
+  async function fetchTransactionData() {
+    dispatch(fetchTransaction({ sortParam }));
+  }
+
   return (
     <main className="App">
       <BrowserRouter>

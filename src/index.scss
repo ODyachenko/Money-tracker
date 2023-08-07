@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-  max-width: 1050px;
+  max-width: 900px;
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -27,6 +27,7 @@ body {
 .primary-btn {
   display: block;
   width: 100%;
+  // max-width: 300px;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 18px;
@@ -42,15 +43,15 @@ body {
 section.expense,
 section.income {
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
   padding-top: 25px;
-  padding-bottom: 90px;
+  // padding-bottom: 90px;
 }
 .expense .container,
 .income .container,
 .transfer .container {
   height: 100%;
-  overflow: auto;
+  // overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,21 +70,7 @@ section.income {
   border: 1px solid #f1f1fa;
   border-radius: 40px;
 
-  // padding: 10px 15px 10px 25px;
   padding: 10px 15px 10px 15px;
-
-  // &::before {
-  //   content: '';
-  //   width: 14px;
-  //   height: 7px;
-  //   background: url('./assets/img/arrow.svg') no-repeat center/contain;
-
-  //   position: absolute;
-  //   top: 0;
-  //   left: 10px;
-  //   bottom: 0;
-  //   margin: auto;
-  // }
 }
 .money-subtitle {
   font-size: 16px;
@@ -98,6 +85,7 @@ section.income {
   font-size: 64px;
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
   margin-bottom: 15px;
 }
 .settings {
@@ -115,6 +103,7 @@ section.income {
   border: 1px solid #f1f1fa;
   border-radius: 12px;
   transition: all 0.5s ease;
+  cursor: pointer;
 
   padding: 15px 16px;
   margin-bottom: 15px;
@@ -141,11 +130,18 @@ section.income {
     scale: 0.9;
   }
 }
-// .settings .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-//   font-family: Inter;
-//   font-size: 14px;
-//   border-radius: 12px;
-// }
-// .settings .css-q8hpuo-MuiFormControl-root {
-//   margin-bottom: 15px;
-// }
+
+@media (min-width: 640px) {
+  .block {
+    padding: 40px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+.App {
+  padding-bottom: 100px;
+}

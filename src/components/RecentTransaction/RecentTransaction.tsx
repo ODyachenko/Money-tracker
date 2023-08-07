@@ -1,5 +1,4 @@
 import TransactionGroup from '../Tranaction/TransactionGroup';
-import './style.scss';
 
 export default function RecentTransaction() {
   return (

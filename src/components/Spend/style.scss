@@ -17,6 +17,7 @@
     line-height: 1;
     text-align: center;
     border-radius: 32px;
+    cursor: pointer;
     padding: 15px 0;
 
     &.active {
@@ -36,6 +37,18 @@
 
     & img {
       margin: 0 auto;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .spend {
+    &__graph {
+      max-width: 300px;
+
+      & > canvas {
+        margin: 0 auto;
+      }
     }
   }
 }

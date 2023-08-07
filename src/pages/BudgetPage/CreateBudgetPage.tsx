@@ -31,24 +31,24 @@ const categories: string[] = [
 ];
 
 export default function CreateBudgetPage() {
-  const [send, setSend]: React.ComponentState = useState(false);
+  const [isSend, setIsSend]: React.ComponentState = useState(false);
   const { budgetList } = useSelector(
     (state: React.ComponentState) => state.budget
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (send) {
+    if (isSend) {
       try {
         axios.post(URL, budgetList).then(() => {
           dispatch(setBudgetList(initialState));
-          setSend(false);
+          setIsSend(false);
         });
       } catch (error: any) {
         console.error(error.message);
       }
     }
-  }, [send]);
+  }, [isSend]);
 
   function onChangeHandler(event: BudgetFieldType) {
     dispatch(
@@ -107,10 +107,10 @@ export default function CreateBudgetPage() {
               </Select>
             </FormControl>
             <button
-              onClick={() => setSend(true)}
+              onClick={() => setIsSend(true)}
               className="budget__btn primary-btn"
             >
-              {send ? <BeatLoader color="#fff" /> : 'Continue'}
+              {isSend ? <BeatLoader color="#fff" /> : 'Continue'}
             </button>
           </div>
         </div>

@@ -4,8 +4,24 @@ import SpendDoughnut from './SpendDoughnut';
 import './style.scss';
 
 const exspensesCategories = {
-  names: ['Shopping', 'Subscription', 'Food', 'Transport', 'Gas', 'Pet'],
-  colors: ['#fcac12', '#7f3dff', '#FD3C4A', '#0077FF', '#FCEED4', '#BDDCFF'],
+  names: [
+    'Shopping',
+    'Subscription',
+    'Food',
+    'Transport',
+    'Gas',
+    'Pet',
+    'Transfer',
+  ],
+  colors: [
+    '#fcac12',
+    '#7f3dff',
+    '#FD3C4A',
+    '#0077FF',
+    '#FCEED4',
+    '#BDDCFF',
+    '#0077FF',
+  ],
 };
 const incomeCategories = {
   names: ['Salary', 'Advance'],
@@ -16,7 +32,7 @@ export default function Spend() {
   const [activeCategory, setActiveCategory]: React.ComponentState = useState(0);
 
   return (
-    <section className="spend block">
+    <section className="spend">
       <div className="container">
         <h2 className="spend__title section-title">Spend Frequency</h2>
         <div className="spend__graph">
