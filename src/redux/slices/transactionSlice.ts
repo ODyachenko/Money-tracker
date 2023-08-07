@@ -28,6 +28,7 @@ export type TransactionType = {
 
 interface TransactionState {
   transaction: TransactionType[];
+  currentTransaction: TransactionType[];
   income: number;
   expenses: number;
   status: 'idle' | 'pending' | 'succeeded' | 'failed';
@@ -35,6 +36,7 @@ interface TransactionState {
 
 const initialState: TransactionState = {
   transaction: [],
+  currentTransaction: [],
   income: 0,
   expenses: 0,
   status: 'idle',
@@ -46,6 +48,9 @@ export const transactionSlice = createSlice({
   reducers: {
     setTransaction: (state, action) => {
       state.transaction = action.payload;
+    },
+    setCurrentTransaction: (state, action) => {
+      state.currentTransaction = action.payload;
     },
     setIncome: (state, action) => {
       state.income = action.payload;
@@ -71,7 +76,7 @@ export const transactionSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setTransaction, setIncome, setExpenses } =
+export const { setTransaction, setIncome, setExpenses, setCurrentTransaction } =
   transactionSlice.actions;
 
 export default transactionSlice.reducer;

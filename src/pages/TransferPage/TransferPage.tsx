@@ -151,7 +151,9 @@ export default function TransferPage() {
             </button>
           </div>
         </form>
-        {showPopup && <SucessPopup />}
+        {showPopup && (
+          <SucessPopup text="Transaction has been successfully&nbsp;added" />
+        )}
       </div>
     </section>
   );

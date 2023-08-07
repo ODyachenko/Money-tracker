@@ -172,7 +172,9 @@ export default function MoneyForm({ transaction, categories }: MoneyFormType) {
           </button>
         </div>
       </form>
-      {showPopup && <SucessPopup />}
+      {showPopup && (
+        <SucessPopup text="Transaction has been successfully&nbsp;added" />
+      )}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import './style.scss';
 
-export default function SucessPopup() {
+export default function SucessPopup({ text }: { text: string }) {
   return (
     <div className={`popup`}>
       <div className="popup__window">
@@ -17,9 +17,7 @@ export default function SucessPopup() {
             fill="#5233FF"
           />
         </svg>
-        <p className="popup__text">
-          Transaction has been successfully&nbsp;added
-        </p>
+        <p className="popup__text">{text}</p>
       </div>
     </div>
   );

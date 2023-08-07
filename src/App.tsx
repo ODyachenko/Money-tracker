@@ -11,6 +11,7 @@ import Navbar from './components/Navbar/Navbar';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchTransaction } from './redux/slices/transactionSlice';
+import DetailTransaction from './pages/DetailTransaction/DetailTransaction';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/create-budget" element={<CreateBudgetPage />} />
+          <Route path="/detail-transaction" element={<DetailTransaction />} />
         </Routes>
         <Navbar />
       </BrowserRouter>

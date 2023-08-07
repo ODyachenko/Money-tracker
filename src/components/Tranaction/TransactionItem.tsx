@@ -1,21 +1,33 @@
-import { TransactionType } from '../../redux/slices/transactionSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {
+  setCurrentTransaction,
+  TransactionType,
+} from '../../redux/slices/transactionSlice';
 import './style.scss';
 
 export default function TransactionItem({
+  id,
   amount,
   category,
   description,
   time,
   type,
 }: TransactionType) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function onClickHandler() {
+    navigate('/detail-transaction');
+    dispatch(
+      setCurrentTransaction({ id, amount, category, description, time, type })
+    );
+  }
+
   return (
-    <li className="transaction__item">
+    <li className="transaction__item" onClick={onClickHandler}>
       <span className="transaction__ico">
-        <img
-          // src={require(`../../assets/img/${category}.svg`)}
-          src={`img/${category}.svg`}
-          alt="Transaction icon"
-        />
+        <img src={`img/${category}.svg`} alt="Transaction icon" />
       </span>
       <div className="transaction__col">
         <h3 className="transaction__caption">{category}</h3>
