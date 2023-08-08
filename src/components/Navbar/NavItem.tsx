@@ -20,8 +20,8 @@ export default function NavItem({
 }: LinkType) {
   return (
     <li
-      className={`nav__list-item ${activeLink === id ? 'active' : ''}`}
-      onClick={() => setActiveLink(id)}
+      className={`nav__list-item ${activeLink === path ? 'active' : ''}`}
+      onClick={() => setActiveLink(path)}
     >
       <NavLink to={path}>
         <figure className="nav__list-ico">{icon}</figure>

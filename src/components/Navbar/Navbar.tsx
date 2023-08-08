@@ -95,7 +95,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [activeLink, setActiveLink]: React.ComponentState = useState(0);
+  const [activeLink, setActiveLink]: React.ComponentState = useState(
+    window.location.pathname
+  );
 
   return (
     <nav className="nav">

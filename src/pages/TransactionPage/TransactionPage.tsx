@@ -5,6 +5,7 @@ import Filters from '../../components/Filters/Filters';
 import TransactionGroup from '../../components/Tranaction/TransactionGroup';
 import './style.scss';
 import { setIsSend } from '../../redux/slices/filterSlice';
+import { month } from '../../utils/getCurrentMonth';
 
 export default function TransactionPage() {
   const [showFilters, setShowFilters]: React.ComponentState = useState(false);
@@ -12,7 +13,6 @@ export default function TransactionPage() {
     (state: React.ComponentState) => state.filter
   );
   const dispatch = useDispatch();
-  const month = new Date().toLocaleString('en', { month: 'long' });
 
   useEffect(() => {
     fetchTransactionData();

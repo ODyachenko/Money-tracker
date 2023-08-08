@@ -1,14 +1,13 @@
-import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
-import { setBudgetList } from '../../redux/slices/budgetSlice';
 import './style.scss';
+import SucessPopup from '../../components/SuccessPopup/SucessPopup';
 
 type BudgetFieldType =
   | ChangeEvent<HTMLInputElement>
@@ -16,7 +15,6 @@ type BudgetFieldType =
 
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
 const initialState = {
-  id: '',
   amount: 0,
   category: '',
 };
@@ -31,35 +29,32 @@ const categories: string[] = [
 ];
 
 export default function CreateBudgetPage() {
+  const [data, setData] = useState(initialState);
   const [isSend, setIsSend]: React.ComponentState = useState(false);
-  const { budgetList } = useSelector(
-    (state: React.ComponentState) => state.budget
-  );
-  const dispatch = useDispatch();
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (isSend) {
       try {
-        axios.post(URL, budgetList).then(() => {
-          dispatch(setBudgetList(initialState));
+        axios.post(URL, data).then(() => {
+          setData(initialState);
           setIsSend(false);
+          setShowPopup(true);
         });
       } catch (error: any) {
         console.error(error.message);
+      } finally {
+        setTimeout(() => setShowPopup(false), 1000);
       }
     }
   }, [isSend]);
 
   function onChangeHandler(event: BudgetFieldType) {
-    dispatch(
-      setBudgetList({ ...budgetList, [event.target.name]: event.target.value })
-    );
+    setData({ ...data, [event.target.name]: event.target.value });
   }
 
   const onChangeSelect = (event: SelectChangeEvent) => {
-    dispatch(
-      setBudgetList({ ...budgetList, ['category']: event.target.value })
-    );
+    setData({ ...data, ['category']: event.target.value });
   };
 
   return (
@@ -78,7 +73,7 @@ export default function CreateBudgetPage() {
             <input
               type="number"
               name="amount"
-              value={budgetList.amount}
+              value={data.amount}
               onChange={onChangeHandler}
             />
           </label>
@@ -87,7 +82,7 @@ export default function CreateBudgetPage() {
               <InputLabel>Category</InputLabel>
               <Select
                 label="Category"
-                value={budgetList.category}
+                value={data.category}
                 onChange={onChangeSelect}
                 sx={{
                   borderRadius: '12px',
@@ -114,6 +109,9 @@ export default function CreateBudgetPage() {
             </button>
           </div>
         </div>
+        {showPopup && (
+          <SucessPopup text="Budget has been successfully&nbsp;added" />
+        )}
       </div>
     </section>
   );

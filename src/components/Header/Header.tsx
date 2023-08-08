@@ -7,6 +7,7 @@ import {
 } from '../../redux/slices/balanceSlice';
 import axios from 'axios';
 import './style.scss';
+import { month } from '../../utils/getCurrentMonth';
 
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
 
@@ -20,7 +21,6 @@ export default function Header() {
   const [isEdit, setIsEdit] = useState(false);
   const [isSend, setIsSend] = useState(false);
   const dispatch = useDispatch();
-  const month = new Date().toLocaleString('en', { month: 'long' });
 
   useEffect(() => {
     dispatch(fetchBalance());

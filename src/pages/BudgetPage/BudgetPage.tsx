@@ -2,9 +2,11 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import BudgetItem from '../../components/Budget/BudgetItem';
 import EmptyBudget from '../../components/Budget/EmptyBudget';
-import { setBudgetList, BudgetType } from '../../redux/slices/budgetSlice';
+import { setBudgetList } from '../../redux/slices/budgetSlice';
+import { month } from '../../utils/getCurrentMonth';
 import './style.scss';
 
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Budget';
@@ -27,7 +29,7 @@ export default function BudgetPage() {
   return (
     <section className="budget">
       <div className="container">
-        <h2 className="budget__title section-title">August</h2>
+        <h2 className="budget__title section-title">{month}</h2>
         <div className="budget__settings settings">
           {budgetList.length ? (
             <ul className="budget__list">

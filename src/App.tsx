@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { fetchTransaction } from './redux/slices/transactionSlice';
 import DetailTransaction from './pages/DetailTransaction/DetailTransaction';
 import EditTransaction from './pages/EditTransaction/EditTransaction';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/create-budget" element={<CreateBudgetPage />} />
           <Route path="/detail-transaction" element={<DetailTransaction />} />
           <Route path="/edit-transaction" element={<EditTransaction />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <Navbar />
       </BrowserRouter>
