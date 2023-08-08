@@ -11,6 +11,7 @@ export default function TransactionItem({
   amount,
   category,
   description,
+  date,
   time,
   type,
 }: TransactionType) {
@@ -20,7 +21,15 @@ export default function TransactionItem({
   function onClickHandler() {
     navigate('/detail-transaction');
     dispatch(
-      setCurrentTransaction({ id, amount, category, description, time, type })
+      setCurrentTransaction({
+        id,
+        amount,
+        category,
+        description,
+        date,
+        time,
+        type,
+      })
     );
   }
 

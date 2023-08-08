@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ArrowBack from '../../components/ArrowBack/ArrowBack';
-import trash from '../../assets/img/trash.svg';
 import { useSelector } from 'react-redux';
-import './style.scss';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import { BeatLoader } from 'react-spinners';
 import SucessPopup from '../../components/SuccessPopup/SucessPopup';
-import { useNavigate } from 'react-router-dom';
+import trash from '../../assets/img/trash.svg';
+import './style.scss';
 
 const url: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
 
@@ -41,34 +41,37 @@ export default function DetailTransaction() {
   }
 
   return (
-    <section className="edit">
-      <div className={`edit__inner ${type}`}>
-        <h3 className="edit__title section-title">
+    <section className="detail">
+      <div className={`detail__inner ${type}`}>
+        <h2 className="detail__title section-title">
           <ArrowBack path="/" />
           Detail Transaction
           <img src={trash} alt="Trash" onClick={onClickRemove} />
-        </h3>
-        <h2 className="edit__amount">${amount}</h2>
-        <h4 className="edit__time">{time}</h4>
+        </h2>
+        <h1 className="detail__amount">${amount}</h1>
+        <h4 className="detail__time">{time}</h4>
       </div>
       <div className="container">
-        <div className="edit__reference">
-          <div className="edit__label">
+        <div className="detail__reference">
+          <div className="detail__label">
             Type
-            <span className="edit__caption">{type}</span>
+            <span className="detail__caption">{type}</span>
           </div>
-          <div className="edit__label">
+          <div className="detail__label">
             Category
-            <span className="edit__caption">{category}</span>
+            <span className="detail__caption">{category}</span>
           </div>
-          <div className="edit__label">
+          <div className="detail__label">
             Wallet
-            <span className="edit__caption">Wallet</span>
+            <span className="detail__caption">Wallet</span>
           </div>
         </div>
-        <h3 className="edit__subtitle">Description</h3>
-        <p className="edit__description">{description}</p>
-        <button className="edit__btn primary-btn">
+        <h3 className="detail__subtitle">Description</h3>
+        <p className="detail__description">{description}</p>
+        <button
+          className="detail__btn primary-btn"
+          onClick={() => navigate('/edit-transaction')}
+        >
           {isDelete ? <BeatLoader color="#fff" /> : 'Edit'}{' '}
         </button>
       </div>

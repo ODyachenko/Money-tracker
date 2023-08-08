@@ -49,7 +49,8 @@ body {
   padding: 17px;
 }
 section.expense,
-section.income {
+section.income,
+section.edit {
   height: 100%;
   // overflow: hidden;
   padding-top: 25px;
@@ -57,7 +58,8 @@ section.income {
 }
 .expense .container,
 .income .container,
-.transfer .container {
+.transfer .container,
+.edit .container {
   height: 100%;
   // overflow: auto;
   display: flex;
