@@ -43,13 +43,15 @@ export default function DetailTransaction() {
   return (
     <section className="detail">
       <div className={`detail__inner ${type}`}>
-        <h2 className="detail__title section-title">
-          <ArrowBack path="/" />
-          Detail Transaction
-          <img src={trash} alt="Trash" onClick={onClickRemove} />
-        </h2>
-        <h1 className="detail__amount">${amount}</h1>
-        <h4 className="detail__time">{time}</h4>
+        <div className="container">
+          <h2 className="detail__title section-title">
+            <ArrowBack path="/" />
+            Detail Transaction
+            <img src={trash} alt="Trash" onClick={onClickRemove} />
+          </h2>
+          <h1 className="detail__amount">${amount}</h1>
+          <h4 className="detail__time">{time}</h4>
+        </div>
       </div>
       <div className="container">
         <div className="detail__reference">

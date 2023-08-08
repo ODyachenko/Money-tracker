@@ -32,3 +32,22 @@
     margin: auto;
   }
 }
+.settings {
+  background: #fff;
+  border-radius: 32px 32px 0 0;
+  padding: 25px 15px;
+  margin: 0 -15px;
+}
+
+@media (min-width: 480px) {
+  .money {
+    &__form {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+  }
+  .settings {
+    border-radius: 32px;
+    margin: 0;
+  }
+}

@@ -1,14 +1,19 @@
 @import '../../assets/scss/variables.scss';
 
 .budget {
-  height: 100%;
   background: $primary-violet;
-  padding: 25px 0 0;
 
   & .container {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  &__btn {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  & .money__form .budget__btn {
+    max-width: 100%;
   }
 }

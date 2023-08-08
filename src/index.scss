@@ -8,15 +8,10 @@ body {
   font-weight: 500;
   color: #292b2d;
 }
-#root {
-  height: 100vh;
-  overflow: hidden;
-}
 .App {
-  height: 100%;
-  overflow: auto;
   padding-bottom: 90px;
 }
+
 .block {
   padding: 25px 0;
 }
@@ -35,7 +30,6 @@ body {
 .primary-btn {
   display: block;
   width: 100%;
-  // max-width: 300px;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 18px;
@@ -50,11 +44,26 @@ body {
 }
 section.expense,
 section.income,
-section.edit {
-  height: 100%;
+section.edit,
+section.transfer,
+section.profile {
+  height: calc(100vh - 91px);
+  // height: 100vh;
   // overflow: hidden;
   padding-top: 25px;
   // padding-bottom: 90px;
+}
+section.budget {
+  min-height: calc(100vh - 91px);
+}
+@supports (-webkit-touch-callout: none) {
+  section.expense,
+  section.income,
+  section.edit,
+  section.transfer,
+  section.profile {
+    height: 100vh;
+  }
 }
 .expense .container,
 .income .container,
@@ -98,12 +107,7 @@ section.income {
   cursor: pointer;
   margin-bottom: 15px;
 }
-.settings {
-  background: #fff;
-  border-radius: 32px 32px 0 0;
-  padding: 25px 15px;
-  margin: 0 -15px;
-}
+
 .field {
   display: block;
   width: 100%;
@@ -141,13 +145,34 @@ section.income {
   }
 }
 
+@media (min-width: 480px) {
+  section.expense,
+  section.income,
+  section.edit,
+  section.transfer,
+  section.budget {
+    padding-bottom: 25px;
+  }
+}
 @media (min-width: 640px) {
-  .block {
+  .block,
+  section.expense,
+  section.income,
+  section.edit,
+  section.transfer,
+  section.budget {
     padding: 40px 0;
   }
 }
 @media (min-width: 1024px) {
   .section-title {
     font-size: 24px;
+  }
+  .primary-btn {
+    transition: all 0.2s ease;
+
+    &:hover {
+      box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    }
   }
 }

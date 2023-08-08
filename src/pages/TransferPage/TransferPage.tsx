@@ -68,7 +68,7 @@ export default function TransferPage() {
           <ArrowBack path="/" />
           Transfer
         </h2>
-        <form className="money__wrapper" onSubmit={onSubmitHandler}>
+        <form className="money__form" onSubmit={onSubmitHandler}>
           <h3 className="money__subtitle money-subtitle">How much?</h3>
           <label className="money__count money-count">
             $

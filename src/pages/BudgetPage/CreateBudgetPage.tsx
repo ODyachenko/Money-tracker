@@ -64,7 +64,7 @@ export default function CreateBudgetPage() {
           <ArrowBack path="/budget" />
           Create Budget
         </h2>
-        <div className="budget__content">
+        <div className="budget__content money__form">
           <h3 className="budget__subtitle money-subtitle">
             How much do you want to spend?
           </h3>
