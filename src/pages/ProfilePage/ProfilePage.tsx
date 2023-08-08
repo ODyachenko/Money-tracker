@@ -14,7 +14,7 @@ export default function ProfilePage() {
           <img className="user__avatar" src={avatar} alt="User avatar" />
           <div className="user__info">
             <span className="user__info--label">Username</span>
-            <h2 className="user__info--name">Iriana Saliha</h2>
+            <h2 className="user__info--name">Oleh Diachenko</h2>
           </div>
           <button className="user__edit-btn">
             <svg
