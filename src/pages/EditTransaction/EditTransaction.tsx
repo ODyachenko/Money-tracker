@@ -23,9 +23,9 @@ export default function EditTransaction() {
   const { currentTransaction } = useSelector(
     (state: React.ComponentState) => state.transaction
   );
-  const [data, setData] = useState(currentTransaction);
-  const [isSend, setIsSend] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [data, setData]: React.ComponentState = useState(currentTransaction);
+  const [isSend, setIsSend]: React.ComponentState = useState(false);
+  const [showPopup, setShowPopup]: React.ComponentState = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -3,7 +3,12 @@ import SpendTabs from './SpendTabs';
 import SpendDoughnut from './SpendDoughnut';
 import './style.scss';
 
-const exspensesCategories = {
+export type SpendCategiries = {
+  names: string[];
+  colors: string[];
+};
+
+const exspensesCategories: SpendCategiries = {
   names: [
     'Shopping',
     'Subscription',
@@ -23,7 +28,7 @@ const exspensesCategories = {
     '#0077FF',
   ],
 };
-const incomeCategories = {
+const incomeCategories: SpendCategiries = {
   names: ['Salary', 'Advance'],
   colors: ['#00a86b', '#CFFAEA'],
 };

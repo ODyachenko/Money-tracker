@@ -2,8 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveSort, setSortParam } from '../../redux/slices/filterSlice';
 
-// const sortItems: string[] = ['Oldest', 'Newest', 'Highest', 'Lowest'];
-
 type SortType = {
   name: string;
   value: string;

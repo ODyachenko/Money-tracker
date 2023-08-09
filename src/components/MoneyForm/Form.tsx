@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import { TransactionType } from '../../redux/slices/transactionSlice';
 import { BeatLoader } from 'react-spinners';
 
@@ -26,7 +26,7 @@ export default function Form({
     setData({ ...data, [event.target.name]: event.target.value });
   }
   function onChangeSelect(event: SelectChangeEvent) {
-    setData({ ...data, ['category']: event.target.value });
+    setData({ ...data, category: event.target.value });
   }
   function onChangeAmount(event: ChangeEvent<HTMLInputElement>) {
     setData({ ...data, [event.target.name]: +event.target.value });

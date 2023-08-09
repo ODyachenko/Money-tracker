@@ -4,6 +4,7 @@ import { BeatLoader } from 'react-spinners';
 import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import './style.scss';
 import SucessPopup from '../../components/SuccessPopup/SucessPopup';
+import { currentDate, currentTime } from '../../utils/getCurrentDate';
 
 type TransferType = {
   amount: number;
@@ -17,15 +18,14 @@ type TransferType = {
 };
 
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Transaction';
-const date = new Date();
 const initialState: TransferType = {
   amount: 0,
   from: '',
   to: '',
   category: 'Transfer',
   description: '',
-  date: date.toISOString().slice(0, 10),
-  time: date.toTimeString().slice(0, 5),
+  date: currentDate,
+  time: currentTime,
   type: 'expense',
 };
 

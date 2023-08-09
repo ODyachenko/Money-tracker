@@ -1,34 +1,35 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 import { TransactionType } from '../../redux/slices/transactionSlice';
 import SucessPopup from '../SuccessPopup/SucessPopup';
 import Form from './Form';
 import './style.scss';
+import { currentDate, currentTime } from '../../utils/getCurrentDate';
 
 type MoneyFormType = {
   transaction: string;
   categories: string[];
 };
 
-const date = new Date();
-
 const initalState: TransactionType = {
   amount: 0,
   category: '',
   description: '',
-  date: date.toISOString().slice(0, 10),
-  time: date.toTimeString().slice(0, 5),
+  date: currentDate,
+  time: currentTime,
   type: '',
 };
 
 const URL: string = 'https://64c39d3067cfdca3b65ffde1.mockapi.io';
 
 export default function MoneyForm({ transaction, categories }: MoneyFormType) {
-  const [data, setData] = useState({ ...initalState, type: transaction });
-  const [isSend, setIsSend] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [data, setData]: React.ComponentState = useState({
+    ...initalState,
+    type: transaction,
+  });
+  const [isSend, setIsSend]: React.ComponentState = useState(false);
+  const [showPopup, setShowPopup]: React.ComponentState = useState(false);
   const { accountBalance } = useSelector(
     (state: React.ComponentState) => state.balance
   );

@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TransactionType } from '../../redux/slices/transactionSlice';
 import {
   fetchBalance,
   setAccountBalance,
@@ -8,6 +7,7 @@ import {
 import axios from 'axios';
 import './style.scss';
 import { month } from '../../utils/getCurrentMonth';
+import { getAmount } from '../../utils/getAmount';
 
 const URL = 'https://64c39d3067cfdca3b65ffde1.mockapi.io/Balance/userBalance';
 
@@ -18,8 +18,8 @@ export default function Header() {
   const { accountBalance } = useSelector(
     (state: React.ComponentState) => state.balance
   );
-  const [isEdit, setIsEdit] = useState(false);
-  const [isSend, setIsSend] = useState(false);
+  const [isEdit, setIsEdit]: React.ComponentState = useState(false);
+  const [isSend, setIsSend]: React.ComponentState = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,17 +54,8 @@ export default function Header() {
     setIsEdit(false);
   }
 
-  const income = transaction
-    .filter((value: TransactionType) => value.type === 'income')
-    .reduce((result: number, value: TransactionType) => {
-      return Number(result) + Number(value.amount);
-    }, 0);
-
-  const expenses = transaction
-    .filter((value: TransactionType) => value.type === 'expense')
-    .reduce((result: number, value: TransactionType) => {
-      return Number(result) + Number(value.amount);
-    }, 0);
+  const income = getAmount(transaction, 'income');
+  const expenses = getAmount(transaction, 'expense');
 
   return (
     <header className="header block">

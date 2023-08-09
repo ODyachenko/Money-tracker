@@ -2,10 +2,15 @@ import { useSelector } from 'react-redux';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { TransactionType } from '../../redux/slices/transactionSlice';
+import { SpendCategiries } from './Spend';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function SpendDoughnut({ categories }: any) {
+export default function SpendDoughnut({
+  categories,
+}: {
+  categories: SpendCategiries;
+}) {
   const { transaction } = useSelector(
     (state: React.ComponentState) => state.transaction
   );
@@ -39,19 +44,14 @@ export default function SpendDoughnut({ categories }: any) {
 
   const textCenter = {
     id: 'textCenter',
-    beforeDatasetsDraw(chart: any, args: any, pluginOptions: any) {
-      const { ctx, data } = chart;
+    beforeDatasetsDraw(chart: any) {
+      const { ctx } = chart;
 
       ctx.save();
       ctx.font = 'bolder 30px Inter';
       ctx.fillStyle = '#292b2d';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      // ctx.fillText(
-      //   `$0`,
-      //   chart.getDatasetMeta(0).data[0].x,
-      //   chart.getDatasetMeta(0).data[0].y
-      // );
     },
   };
 

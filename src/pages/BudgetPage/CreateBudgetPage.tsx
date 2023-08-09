@@ -29,9 +29,9 @@ const categories: string[] = [
 ];
 
 export default function CreateBudgetPage() {
-  const [data, setData] = useState(initialState);
+  const [data, setData]: React.ComponentState = useState(initialState);
   const [isSend, setIsSend]: React.ComponentState = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup]: React.ComponentState = useState(false);
 
   useEffect(() => {
     if (isSend) {
@@ -54,7 +54,7 @@ export default function CreateBudgetPage() {
   }
 
   const onChangeSelect = (event: SelectChangeEvent) => {
-    setData({ ...data, ['category']: event.target.value });
+    setData({ ...data, category: event.target.value });
   };
 
   return (

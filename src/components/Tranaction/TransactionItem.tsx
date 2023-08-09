@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {
   setCurrentTransaction,
   TransactionType,
@@ -15,7 +15,7 @@ export default function TransactionItem({
   time,
   type,
 }: TransactionType) {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const dispatch = useDispatch();
 
   function onClickHandler() {

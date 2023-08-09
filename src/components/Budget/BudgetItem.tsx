@@ -6,14 +6,13 @@ export default function BudgetItem({ amount, category }: BudgetType) {
   const { transaction } = useSelector(
     (state: React.ComponentState) => state.transaction
   );
-
   const result = transaction
     .filter((transaction: TransactionType) => transaction.category === category)
     .reduce((res: number, item: TransactionType) => {
       return Number(res) + Number(item.amount);
     }, 0);
-  const progress = result / (Number(amount) / 100);
-  const attentionСondition = Number(amount) - result <= 0;
+  const progress: number = result / (Number(amount) / 100);
+  const attentionСondition: boolean = Number(amount) - result <= 0;
 
   return (
     <li className="budget__list-item">

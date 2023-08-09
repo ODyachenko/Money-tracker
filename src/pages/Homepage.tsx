@@ -10,7 +10,7 @@ export default function Homepage() {
     (state: React.ComponentState) => state.transaction
   );
   const dispatch = useDispatch();
-  const sortParam = 'time';
+  const sortParam: string = 'time';
 
   useEffect(() => {
     fetchTransactionData();

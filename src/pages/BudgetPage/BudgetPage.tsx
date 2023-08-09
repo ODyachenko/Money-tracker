@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ArrowBack from '../../components/ArrowBack/ArrowBack';
 import BudgetItem from '../../components/Budget/BudgetItem';
 import EmptyBudget from '../../components/Budget/EmptyBudget';
 import { setBudgetList } from '../../redux/slices/budgetSlice';
@@ -20,7 +19,7 @@ export default function BudgetPage() {
 
   useEffect(() => {
     try {
-      axios(URL).then((res) => dispatch(setBudgetList(res.data)));
+      axios(URL).then((res: any) => dispatch(setBudgetList(res.data)));
     } catch (error: any) {
       console.error(error.message);
     }
